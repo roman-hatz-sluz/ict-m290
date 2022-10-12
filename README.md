@@ -1,2 +1,11 @@
-# ict-m290
-290 Datenbanken abfragen und verändern - https://www.modulbaukasten.ch/module/290/1/de-DE?title=Datenbanken-abfragen-und-ver%C3%A4ndern 
+# What is it
+- Headless server for teaching Web Frontend Application 
+- Database Handler in NodeJS
+- Query Manager Web App for writing queries and viewing data. 
+- Learn SQL without programming the backend database handler
+- Allows sending SQL Queries directly from a static HTML page. 
+
+# Local Dev
+npm run start
+npm run dev 
+
