@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const DBClient = require("./srv/db-client");
+const { getPackedSettings } = require("http2");
 const app = express();
 app.use(
   session({
@@ -49,13 +50,12 @@ app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (request, response) => {
-  const html = fs.readFileSync(__dirname + "/public/src/index.html", "utf8");
-
+  const html = getPageHtml("index");
   response.end(html);
 });
 
 app.get("/index.html", (request, response) => {
-  const html = fs.readFileSync(__dirname + "/public/src/index.html", "utf8");
+  const html = getPageHtml("index");
   response.end(html);
 });
 
@@ -81,6 +81,8 @@ app.get("/logout", (request, response) => {
   response.redirect("/");
 });
 
+
+
 app.get("/home", (request, response) => {
   const pw = request.session.pw;
   let html = "";
@@ -88,11 +90,10 @@ app.get("/home", (request, response) => {
   // console.log("group /home", group)
 
   if (group && group.group) {
-    html = fs.readFileSync(__dirname + "/public/src/home.html", "utf8");
+    let html = getPageHtml("home");
     html = html.replace(/_GRUPPE_/g, group.group);
     html = html.replace(/_NAME_/g, group.name);
     html = html.replace(/_KLASSE_/g, group.class);
-
     html = html.replace(/_ENV_/g, group.ENV, group);
     response.end(html);
   } else {
@@ -100,25 +101,26 @@ app.get("/home", (request, response) => {
   }
 });
 app.get("/import", (request, response) => {
-  const html = fs.readFileSync(__dirname + "/public/src/import.html", "utf8");
+  const html = getPageHtml("import");
+  response.end(html);
+});
+app.get("/dbms", (request, response) => {
+  const html = getPageHtml("dbms");
   response.end(html);
 });
 /*
 app.get("/csv", (request, response) => {
- const html = fs.readFileSync(__dirname + "/public/src/csv.html", "utf8");
+ const html = getPageHtml("csv");
  response.end(html);
 });
-app.get("/import", (request, response) => {
- const html = fs.readFileSync(__dirname + "/public/src/import.html", "utf8");
- response.end(html);
-});
+ 
 app.get("/maincat", (request, response) => {
- const html = fs.readFileSync(__dirname + "/public/src/maincat.html", "utf8");
+ const html = getPageHtml("maincat");
  response.end(html);
 });
 
 app.get("/produkt", (request, response) => {
- const html = fs.readFileSync(__dirname + "/public/src/produkt.html", "utf8");
+const html = getPageHtml("produkt");
  response.end(html);
 });
 */
@@ -138,7 +140,7 @@ app.post("/sql", (request, response) => {
         response.end(JSON.stringify(res));
       })
       .catch((err) => {
-        console.log("errrrrr", err);
+        console.log("error", err);
         response.json({ error: err });
       });
   } else {
@@ -146,9 +148,7 @@ app.post("/sql", (request, response) => {
   }
 });
 
-app.get("/robots.txt", (request, response) => {
-  //response.sendFile("./robots.txt", { root: __dirname });
-});
+ 
 
 const server = app.listen(port, () => {
   console.log(
@@ -158,3 +158,16 @@ const server = app.listen(port, () => {
     app.get("env")
   );
 });
+
+const getPageHtml = (name = "") => {
+  let html = "";
+  html = fs.readFileSync(__dirname + "/public/src/" + name + ".html", "utf8");
+  const head = fs.readFileSync(__dirname + "/public/src/incl_head.html", "utf8");
+  const header = fs.readFileSync(__dirname + "/public/src/incl_header.html", "utf8");
+  const footer = fs.readFileSync(__dirname + "/public/src/incl_footer.html", "utf8");
+
+  html = html.replace(/___HEAD___/g, head);
+  html = html.replace(/___HEADER___/g, header);
+  html = html.replace(/___FOOTER___/g, footer);
+  return html;
+}

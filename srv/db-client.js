@@ -69,11 +69,11 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
 };
 
 const getGroupData = (pw = "") => {
-  //console.log("pw", process.env)
+ //console.log("pw  xxxxx", pw)
   let result = null;
   const groups = Object.keys(dbConfig);
   groups.forEach((g) => {
-    //console.log(g, dbConfig[g], process.env[dbConfig[g].ENV])
+ //console.log(g, dbConfig[g], process.env[dbConfig[g].ENV])
     const sqlQueryString = process.env[dbConfig[g].ENV] || ""
     if (sqlQueryString.includes(":" + pw + "@")) {
       result = { group: g, con: sqlQueryString, name: dbConfig[g].name, class: dbConfig[g].class, ENV: dbConfig[g].ENV };
