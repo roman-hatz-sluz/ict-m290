@@ -21,7 +21,7 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
 
     const parsedConfig = parseDbUrl(process.env[dbConfig[group].ENV]);
     parsedConfig.multipleStatements = true;
-    // logik: wenn querytyoe, dann kein passwort 
+    // logik: wenn query type, dann kein passwort 
     if (queryTpe && QUERIES[queryTpe]) {
       sql = QUERIES[queryTpe];
     }
@@ -69,19 +69,27 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
 };
 
 const getGroupData = (pw = "") => {
- //console.log("pw  xxxxx", pw)
+  //console.log("pw  xxxxx", pw)
   let result = null;
   const groups = Object.keys(dbConfig);
   groups.forEach((g) => {
- //console.log(g, dbConfig[g], process.env[dbConfig[g].ENV])
+    //console.log(g, dbConfig[g], process.env[dbConfig[g].ENV])
     const sqlQueryString = process.env[dbConfig[g].ENV] || ""
+    const sqlConnectionString = parseDbUrl(sqlQueryString)
+
+
     if (sqlQueryString.includes(":" + pw + "@")) {
-      result = { group: g, con: sqlQueryString, name: dbConfig[g].name, class: dbConfig[g].class, ENV: dbConfig[g].ENV };
+      result = { 
+        group: g, con: sqlQueryString, 
+        sqlConnectionString: sqlConnectionString, 
+        name: dbConfig[g].name, class: dbConfig[g].class, 
+        ENV: dbConfig[g].ENV };
     }
   })
   // console.log("result", result)
   return result;
 };
+
 
 module.exports = {
   execQuery,

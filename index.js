@@ -105,7 +105,22 @@ app.get("/import", (request, response) => {
   response.end(html);
 });
 app.get("/dbms", (request, response) => {
-  const html = getPageHtml("dbms");
+  const pw = request.session.pw;
+  const group = DBClient.getGroupData(pw);
+
+  let html = getPageHtml("dbms");
+  if (group && group.sqlConnectionString) {
+    html = html.replace(/_CONNECTION_STRING_/g, JSON.stringify(group.sqlConnectionString));
+    html = html.replace(/_USER_/g, group.sqlConnectionString.user);
+    html = html.replace(/_DATABASE_/g, group.sqlConnectionString.database);
+    html = html.replace(/_SERVER_/g, group.sqlConnectionString.host);
+    html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
+
+    response.end(html);
+  } else {
+    console.error("invalid group configuration for pw:", pw)
+    response.redirect("/?invalidPw=1");
+  }
   response.end(html);
 });
 /*
@@ -148,7 +163,7 @@ app.post("/sql", (request, response) => {
   }
 });
 
- 
+
 
 const server = app.listen(port, () => {
   console.log(
