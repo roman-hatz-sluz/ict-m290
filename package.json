@@ -63,9 +63,11 @@
   "scripts": {
     "start": "node ./index.js",
     "start-watch": "nodemon --watch",
-    "build": "rm -rf public/*;  npm run copy-assets; node_modules/.bin/webpack --mode production",
-    "dev": "rm -rf public/*; npm run copy-assets; webpack --mode development --watch",
-    "copy-assets": "mkdir -p public/src && cp -r src/*.html public/src/ && cp -r src/assets public/src/assets/",
+    "build": "rm -rf public/*; npm run copy; node_modules/.bin/webpack --mode production",
+    "dev": "rm -rf public/*; npm run copy; webpack --mode development --watch",
+    "copy": "npm run copy-html; npm run copy-assets;",
+    "copy-html": "mkdir -p public/src; cp -r src/*.html public/src/;",
+    "copy-assets": "mkdir -p public/src; cp -r src/assets public/assets/",
     "lint": "node_modules/.bin/eslint ./src/js --fix --ext .js;",
     "lint-srv": "node_modules/.bin/eslint ./srv --fix --ext .js && node_modules/.bin/eslint index.js --fix --ext .js;",
     "resetDB": "node srv/resetDB.js"

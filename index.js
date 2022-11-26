@@ -4,8 +4,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const DBClient = require("./srv/db-client");
-const { getPackedSettings } = require("http2");
+const DBClient = require("./srv/db-client"); 
 const app = express();
 app.use(
   session({
@@ -58,8 +57,6 @@ app.get("/index.html", (request, response) => {
   const html = getPageHtml("index");
   response.end(html);
 });
-
-app.use(express.static(__dirname + "/public"));
 
 app.get("/login", (request, response) => {
   const data = request.query;
@@ -114,7 +111,8 @@ app.get("/dbms", (request, response) => {
     html = html.replace(/_USER_/g, group.sqlConnectionString.user);
     html = html.replace(/_DATABASE_/g, group.sqlConnectionString.database);
     html = html.replace(/_SERVER_/g, group.sqlConnectionString.host);
-    html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
+    // adminer password field does not work prefilled  
+    //html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
 
     response.end(html);
   } else {
@@ -124,18 +122,18 @@ app.get("/dbms", (request, response) => {
   response.end(html);
 });
 /*
-app.get("/csv", (request, response) => {
- const html = getPageHtml("csv");
+app.get("/shopHome", (request, response) => {
+ const html = getPageHtml("shopHome");
  response.end(html);
 });
  
-app.get("/maincat", (request, response) => {
- const html = getPageHtml("maincat");
+app.get("/shopMainCat", (request, response) => {
+ const html = getPageHtml("shopMainCat");
  response.end(html);
 });
 
-app.get("/produkt", (request, response) => {
-const html = getPageHtml("produkt");
+app.get("/shopProduct", (request, response) => {
+const html = getPageHtml("shopProduct");
  response.end(html);
 });
 */

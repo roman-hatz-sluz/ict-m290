@@ -17,14 +17,46 @@ body {
   min-height: 15px;
 }
 .header-content {
+  display: grid;
+  grid-template-columns: 50px 1fr 200px;
   background-color: #444444;
   color: #ffffff;
   padding: 4px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   padding: 4px;
   margin: 20px;
 }
+.header-logo {
+   align-self: center;
+  justify-self: start;
+     margin-left:4px;
+   margin-top:4px;
+}
+.header-logo-img {
+  width: 32px;
+  height: 32px;
+  background: white;
+}
+.header-title {
+  align-self: center;
+  justify-self: start;
+}
+
+.header-nav {
+  align-self: center;
+  justify-self: end;
+  color:white;
+  font-size: 14px;
+    margin-right:4px;
+ 
+}
+.header-nav a {
+ 
+  color:white;
+  font-size: 14px;
+}
+
 .footer {
   min-height: 15px;
 }
