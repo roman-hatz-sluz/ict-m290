@@ -1,18 +1,20 @@
 import renderData from "./sql-renderer";
+import { sqlFetch } from "./helpers";
 let groupValue = null;
 let resultPane;
+
 export default function init() {
   groupValue = document.body.getAttribute("data-group");
   let className = document.body.getAttribute("data-class") || "";
   let shopName = document.body.getAttribute("data-name") || "";
-  //let dbName = document.body.getAttribute("data-dbname") || "";
-  let html = `Online-Shop "${shopName}" (Gruppe: ${groupValue.replace(
+
+  let html = `Thema "${shopName}" (Gruppe ${className}${groupValue.replace(
     /[^0-9]/g,
     ""
-  )}, Klasse: ${className})`;
+  )})`;
   resultPane = document.getElementById("result");
   if (groupValue === "teacher") {
-    html = `Online-Shop Inline-Skates (Gruppe: Teacher)`;
+    html = `Thema Inline-Skates (Gruppe: Teacher)`;
   }
   if (groupValue === "m291aL" || groupValue === "m291b") {
     html = groupValue;
@@ -23,63 +25,41 @@ export default function init() {
   localStorage.setItem("group", groupValue);
 }
 
-function getData() {
+async function getData() {
   resultPane.classList.add("loader");
   document.getElementById("result").innerHTML = "";
-  const METRICS_SQL = `SELECT table_name
+  const METRICS_SQL = `SELECT table_name, create_time
 FROM information_schema.tables
-WHERE table_schema !="information_schema";`;
+WHERE table_schema !="information_schema"
+ORDER BY table_name ASC`;
   const data = {
     group: groupValue,
     sql: METRICS_SQL,
     pw: localStorage.getItem("pw"),
   };
+  const metrics = await sqlFetch(data);
+  console.log("renderData", metrics);
+  if (metrics[1]) {
+    const tablesCount = metrics[1].length;
+    if (tablesCount < 1) {
+      resultPane.classList.remove("loader");
+      resultPane.innerHTML = "Keine Tabellen vorhanden.";
+    }
 
-  fetch("/sql", {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify(data),
-  })
-    .then((res) => {
-      return res.json();
-    })
-    .then((result) => {
-      if (result[1]) {
-        const tablesCount = result[1].length;
-        if (tablesCount < 1) {
-          resultPane.classList.remove("loader");
-          resultPane.innerHTML = "Keine Tabellen vorhanden.";
-        }
-        result[1].forEach((res, index) => {
-          data.sql = `SELECT * FROM ${res.table_name}`;
+    for (const metric of metrics[1]) {
+      data.sql = `
+        SELECT COUNT(*) AS "Anzahl Zeilen", "${metric.create_time}" AS "Erstellungsdatum" FROM ${metric.table_name};
+    
+        -- EXPLAIN ${metric.table_name};`;
+      const tableData = await sqlFetch(data);
 
-          fetch("/sql", {
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(data),
-          })
-            .then((res) => {
-              return res.json();
-            })
-            .then((result) => {
-              renderData(result, data.sql, resultPane, {
-                nohtml: true,
-                title: "Tabelle " + res.table_name,
-              });
-              if (index === tablesCount - 1) {
-                resultPane.classList.remove("loader");
-              }
-            });
-        });
-      }
-    })
-    .catch((res) => {
-      console.error(res);
-    });
+      renderData(tableData, data.sql, resultPane, {
+        nohtml: true,
+        title: "Tabelle " + metric.table_name,
+      });
+    }
+    resultPane.classList.remove("loader");
+  } else {
+    resultPane.classList.remove("loader");
+  }
 }

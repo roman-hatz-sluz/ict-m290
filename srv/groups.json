@@ -1,67 +1,66 @@
 ﻿{
-    "teacher":{
-       "name":"Inline Skates",
-       "ENV":"CLEARDB_DATABASE_URL"
-    },
-    "al1":{
-       "name":"Waifu 4 Life",
-       "class":"S-MMA19aL",
-       "ENV":"CLEARDB_ROSE_URL"
-    },
-    "al2":{
-       "name":"igotyou.ch",
-       "class":"S-MMA19aL",
-       "ENV":"CLEARDB_PUCE_URL"
-    },
-    "al3":{
-       "name":"Chocolate Factory",
-       "class":"S-MMA19aL",
-       "ENV":"CLEARDB_ORANGE_URL"
-    },
-    "al4":{
-       "name":"Fiducia",
-       "class":"S-MMA19aL",
-       "ENV":"CLEARDB_ONYX_URL"
-    },
-    "b1":{
-       "name":"Bijoux pour toi",
-       "class":"S-MMA20b",
-       "ENV":"CLEARDB_BROWN_URL"
-    },
-    "b2":{
-       "name":"www.jonesandjack.shop",
-       "class":"S-MMA20b",
-       "ENV":"CLEARDB_BRONZE_URL"
-    },
-    "b3":{
-       "name":"Skate Shack",
-       "class":"S-MMA20b",
-       "ENV":"CLEARDB_BLUE_URL"
-    },
-    "b4":{
-       "name":"deinSmartphone.ch",
-       "class":"S-MMA20b",
-       "ENV":"CLEARDB_BLACK_URL"
-    }
-    ,
-    "b5":{
-       "name":"",
-       "class":"S-MMA20b",
-       "ENV":""
-    },
-    "b6":{
-       "name":"",
-       "class":"S-MMA20b",
-       "ENV":""
-    },
-    "b7":{
-       "name":"",
-       "class":"S-MMA20b",
-       "ENV":""
-    },
-    "b8":{
-       "name":"",
-       "class":"S-MMA20b",
-       "ENV":""
-    }
- }
+   "teacher": {
+      "name": "Inline Skates",
+      "ENV": "CLEARDB_DATABASE_URL"
+   },
+   "al1": {
+      "name": "Waifu 4 Life",
+      "class": "S-MMA19aL",
+      "ENV": "CLEARDB_ROSE_URL"
+   },
+   "al2": {
+      "name": "igotyou.ch",
+      "class": "S-MMA19aL",
+      "ENV": "CLEARDB_PUCE_URL"
+   },
+   "al3": {
+      "name": "Chocolate Factory",
+      "class": "S-MMA19aL",
+      "ENV": "CLEARDB_ORANGE_URL"
+   },
+   "al4": {
+      "name": "Fiducia",
+      "class": "S-MMA19aL",
+      "ENV": "CLEARDB_ONYX_URL"
+   },
+   "b1": {
+      "name": "Bijoux pour toi",
+      "class": "S-MMA20b",
+      "ENV": "CLEARDB_BROWN_URL"
+   },
+   "b2": {
+      "name": "www.jonesandjack.shop",
+      "class": "S-MMA20b",
+      "ENV": "CLEARDB_BRONZE_URL"
+   },
+   "b3": {
+      "name": "Skate Shack",
+      "class": "S-MMA20b",
+      "ENV": "CLEARDB_BLUE_URL"
+   },
+   "b4": {
+      "name": "deinSmartphone.ch",
+      "class": "S-MMA20b",
+      "ENV": "CLEARDB_BLACK_URL"
+   },
+   "b5": {
+      "name": "",
+      "class": "S-MMA20b",
+      "ENV": ""
+   },
+   "b6": {
+      "name": "",
+      "class": "S-MMA20b",
+      "ENV": ""
+   },
+   "b7": {
+      "name": "",
+      "class": "S-MMA20b",
+      "ENV": ""
+   },
+   "b8": {
+      "name": "",
+      "class": "S-MMA20b",
+      "ENV": ""
+   }
+}

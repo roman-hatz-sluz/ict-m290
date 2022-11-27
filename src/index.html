@@ -1,28 +1,37 @@
 ___HEAD___
 
 <body id="login">
-   ___HEADER___
+  ___HEADER___
 
-   <div class="content" style="text-align: center;">
-      <br> <br> <br> <br>
-      <h3>
-         Willkommen zum interaktiven Lehrmittel für die ICT Module 290 und 291 <br>
-         <br>
-         <br>
-      </h3>
+  <div class="content" style="text-align: center">
+    <br />
+    <br />
+    <br />
+    <br />
+    <h3>
+      Willkommen zum interaktiven Lehrmittel für die ICT Module 290 und 291
+      <br />
+      <br />
+      <br />
+    </h3>
 
+    <br /><br />
 
-      <br><br>
+    Passwort eingeben<br />
+    <input id="pw" type="text" />
 
-      Passwort eingeben<br> <input id="pw" type="text">
+    <br />
+    <br />
+    <button
+      class="pure-button pure-button-primary pure-button-primary-nav"
+      id="submit">
+      Absenden
+    </button>
+    <br />
+    <span style="display: none; color: red" id="error">
+      Ihr Login ist ungültig oder abgelaufen.
+    </span>
+  </div>
 
-      <br> <br>
-      <button class="pure-button pure-button-primary pure-button-primary-nav" id="submit">
-         Absenden
-
-      </button>
-      <br>
-      <span style="display:none;color:red;" id="error"> Ihr Passwort ist ungültig. </span>
-   </div>
-
-   ___FOOTER___
+  ___FOOTER___
+</body>

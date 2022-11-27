@@ -1,13 +1,13 @@
 ___HEAD___
 
-<body id="dbms" data-connection-string="_CONNECTION_STRING_">
-   ___HEADER___
+<body id="import">
+  ___HEADER___
 
-   <div class="content">
-      <a href="/home">Home</a> <br>
+  <div class="content">
+    <a href="/home">Home</a> <br />
 
-      <h1>Database Manager</h1>
-
+    <h1>Database Manager</h1>
+    <!-- 
       <h3>Datenbank</h3>
       Gruppenname:
       <select disabled="true" name="groups" id="groupSelect">
@@ -28,15 +28,31 @@ ___HEAD___
          <option value="b2">b2</option>
          <option value="b3">b3</option>
          <option value="b4">b4</option>
-         <option value="c1">c1</option>
-         <option value="c2">c2</option>
-         <option value="c3">c3</option>
-         <option value="c4">c4</option>
-         <option value="c5">c5</option>
+         <option value="cl1">c1</option>
+         <option value="cl2">c2</option>
+         <option value="cl3">c3</option>
+         <option value="cl4">c4</option>
+         <option value="cl5">c5</option>
       </select>
       &nbsp;&nbsp;&nbsp; Passwort: <input disabled="true" id="pw" type="text">
-      <a target="_blank" 
-      href="https://adminer-php.herokuapp.com/?server=_SERVER_&username=_USER_&db=_DATABASE_&password=_PASSWORD_">Adminer</a>
-   </div>
+      -->
+    <h3>SQL</h3>
+    <textarea
+      placeholder="-- Beispiel für Tabelle löschen: DROP TABLE kategorien; 
+"
+      rows="20"
+      cols="150"
+      id="sql"></textarea>
+    <br />
+    <button
+      class="pure-button pure-button-primary pure-button-primary-nav"
+      id="submit">
+      SQL absenden
+    </button>
+    <br />
+    <h3>Resultat</h3>
+    <pre id="result"></pre>
+  </div>
 
-   ___FOOTER___
+  ___FOOTER___
+</body>

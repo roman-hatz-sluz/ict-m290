@@ -4,7 +4,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const DBClient = require("./srv/db-client"); 
+const DBClient = require("./srv/db-client");
 const app = express();
 app.use(
   session({
@@ -49,12 +49,12 @@ app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (request, response) => {
-  const html = getPageHtml("index");
+  const html = getPageHtml(request, "index");
   response.end(html);
 });
 
 app.get("/index.html", (request, response) => {
-  const html = getPageHtml("index");
+  const html = getPageHtml(request, "index");
   response.end(html);
 });
 
@@ -78,65 +78,22 @@ app.get("/logout", (request, response) => {
   response.redirect("/");
 });
 
-
-
 app.get("/home", (request, response) => {
-  const pw = request.session.pw;
-  let html = "";
-  const group = DBClient.getGroupData(pw);
-  // console.log("group /home", group)
-
-  if (group && group.group) {
-    let html = getPageHtml("home");
-    html = html.replace(/_GRUPPE_/g, group.group);
-    html = html.replace(/_NAME_/g, group.name);
-    html = html.replace(/_KLASSE_/g, group.class);
-    html = html.replace(/_ENV_/g, group.ENV, group);
-    response.end(html);
-  } else {
-    response.redirect("/?invalidPw=1");
-  }
-});
-app.get("/import", (request, response) => {
-  const html = getPageHtml("import");
+  checkLogin(request, response);
+  const html = getPageHtml(request, "home");
   response.end(html);
 });
-app.get("/dbms", (request, response) => {
-  const pw = request.session.pw;
-  const group = DBClient.getGroupData(pw);
 
-  let html = getPageHtml("dbms");
-  if (group && group.sqlConnectionString) {
-    html = html.replace(/_CONNECTION_STRING_/g, JSON.stringify(group.sqlConnectionString));
-    html = html.replace(/_USER_/g, group.sqlConnectionString.user);
-    html = html.replace(/_DATABASE_/g, group.sqlConnectionString.database);
-    html = html.replace(/_SERVER_/g, group.sqlConnectionString.host);
-    // adminer password field does not work prefilled  
-    //html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
-
-    response.end(html);
-  } else {
-    console.error("invalid group configuration for pw:", pw)
-    response.redirect("/?invalidPw=1");
-  }
-  response.end(html);
-});
-/*
 app.get("/shopHome", (request, response) => {
- const html = getPageHtml("shopHome");
- response.end(html);
+  checkLogin(request, response);
+  const html = getPageHtml(request, "shopHome");
+  response.end(html);
 });
- 
-app.get("/shopMainCat", (request, response) => {
- const html = getPageHtml("shopMainCat");
- response.end(html);
+app.get("/shopMaincat", (request, response) => {
+  checkLogin(request, response);
+  const html = getPageHtml(request, "shopMaincat");
+  response.end(html);
 });
-
-app.get("/shopProduct", (request, response) => {
-const html = getPageHtml("shopProduct");
- response.end(html);
-});
-*/
 
 app.post("/sql", (request, response) => {
   const data = request.body;
@@ -161,8 +118,6 @@ app.post("/sql", (request, response) => {
   }
 });
 
-
-
 const server = app.listen(port, () => {
   console.log(
     "Listening on port %d",
@@ -172,15 +127,58 @@ const server = app.listen(port, () => {
   );
 });
 
-const getPageHtml = (name = "") => {
+const checkLogin = (request, response) => {
+  const pw = request.session.pw;
+  const group = DBClient.getGroupData(pw);
+  if (!group || !group.sqlConnectionString) {
+    response.redirect("/?invalidPw=1");
+  }
+};
+
+const getPageHtml = (request, name = "") => {
   let html = "";
+  const pw = request.session.pw;
+  const group = DBClient.getGroupData(pw);
   html = fs.readFileSync(__dirname + "/public/src/" + name + ".html", "utf8");
-  const head = fs.readFileSync(__dirname + "/public/src/incl_head.html", "utf8");
-  const header = fs.readFileSync(__dirname + "/public/src/incl_header.html", "utf8");
-  const footer = fs.readFileSync(__dirname + "/public/src/incl_footer.html", "utf8");
+  const head = fs.readFileSync(
+    __dirname + "/public/src/incl_head.html",
+    "utf8"
+  );
+  const header = fs.readFileSync(
+    __dirname + "/public/src/incl_header.html",
+    "utf8"
+  );
+  const footer = fs.readFileSync(
+    __dirname + "/public/src/incl_footer.html",
+    "utf8"
+  );
+  const nav = fs.readFileSync(
+    __dirname + "/public/src/incl_content-nav.html",
+    "utf8"
+  );
 
   html = html.replace(/___HEAD___/g, head);
   html = html.replace(/___HEADER___/g, header);
   html = html.replace(/___FOOTER___/g, footer);
+  html = html.replace(/___NAV___/g, nav);
+
+  if (group && group.sqlConnectionString) {
+    html = html.replace(
+      /_CONNECTION_STRING_/g,
+      JSON.stringify(group.sqlConnectionString)
+    );
+    html = html.replace(/_USER_/g, group.sqlConnectionString.user);
+    html = html.replace(/_DATABASE_/g, group.sqlConnectionString.database);
+    html = html.replace(/_SERVER_/g, group.sqlConnectionString.host);
+    // adminer password field does not work prefilled
+    html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
+
+    html = html.replace(/_GRUPPE_/g, group.group);
+    html = html.replace(/_NAME_/g, group.name);
+    html = html.replace(/_KLASSE_/g, group.class);
+    html = html.replace(/_ENV_/g, group.ENV);
+  } else {
+    console.error("invalid group configuration for pw:", pw);
+  }
   return html;
-}
+};

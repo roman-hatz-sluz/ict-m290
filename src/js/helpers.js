@@ -49,3 +49,22 @@ function transformToAssocArray(prmstr) {
   }
   return params;
 }
+
+export const sqlFetch = async (data) => {
+  try {
+    let result = await fetch("/sql", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    result = await result.json();
+
+    return result;
+  } catch (error) {
+    console.error("Fetch failed", error);
+    return [];
+  }
+};
