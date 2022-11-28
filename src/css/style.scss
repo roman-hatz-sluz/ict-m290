@@ -67,7 +67,7 @@ body {
   );
 }
 .home-section {
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
 }
 
 .footer {
@@ -81,6 +81,13 @@ body {
   text-align: center;
   padding: 4px;
   margin: 20px;
+}
+
+.result-home {
+  font-size: 14px;
+  table {
+    width: 100%;
+  }
 }
 
 .sqlResult {

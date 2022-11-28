@@ -54,7 +54,7 @@ ORDER BY table_name ASC`;
 
       renderData(tableData, data.sql, resultPane, {
         nohtml: true,
-        title: "Tabelle " + metric.table_name,
+        title: metric.table_name,
       });
     }
   }
