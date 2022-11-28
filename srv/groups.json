@@ -4,24 +4,24 @@
       "ENV": "CLEARDB_DATABASE_URL"
    },
    "al1": {
-      "name": "Waifu 4 Life",
-      "class": "S-MMA19aL",
-      "ENV": "CLEARDB_ROSE_URL"
+      "name": "Italienisches Essen",
+      "class": "S-MMA20aL",
+      "ENV": "CLEARDB_PINK_URL"
    },
    "al2": {
-      "name": "igotyou.ch",
-      "class": "S-MMA19aL",
-      "ENV": "CLEARDB_PUCE_URL"
+      "name": "SmartTech",
+      "class": "S-MMA20aL",
+      "ENV": "CLEARDB_IVORY_URL"
    },
    "al3": {
-      "name": "Chocolate Factory",
-      "class": "S-MMA19aL",
-      "ENV": "CLEARDB_ORANGE_URL"
+      "name": "Splash",
+      "class": "S-MMA20aL",
+      "ENV": "CLEARDB_BLACK_URL"
    },
    "al4": {
-      "name": "Fiducia",
-      "class": "S-MMA19aL",
-      "ENV": "CLEARDB_ONYX_URL"
+      "name": "Blue Stone",
+      "class": "S-MMA20aL",
+      "ENV": "CLEARDB_GRAY_URL"
    },
    "b1": {
       "name": "Bijoux pour toi",
