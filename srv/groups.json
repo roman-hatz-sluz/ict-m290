@@ -44,7 +44,7 @@
       "ENV": "CLEARDB_BLUE_URL"
    },
    "cl5": {
-      "name": "Schneebrett",
+      "name": "schneebrett.ch",
       "class": "S-MMA20cL",
       "ENV": "CLEARDB_TEAL_URL"
    },
