@@ -29,10 +29,10 @@ export default function renderData(
     resultPane.appendChild(renderSystemOutput(data));
     return false;
   }
-  if (data.length > 1000) {
+  if (data.length > 10000) {
     resultPane.appendChild(
       renderSystemOutput(
-        "Fehler. Sie haben mehr als 1000 Datensätze selektiert."
+        "Fehler. Sie haben mehr als 10000 Datensätze selektiert."
       )
     );
     return false;
@@ -87,6 +87,10 @@ function renderHtmlTable(tableHeaders, tableData, nohtml = false) {
         } else if (val.startsWith("http")) {
           return html(
             `<a target="_blank" href='${row.cells[index].data}'>Externer Link</a>`
+          );
+        } else if (val.includes("shopMaincat")) {
+          return html(
+            `<a target="_blank" href='${row.cells[index].data}'>Produkte ansehen</a>`
           );
         } else if (header === "Detailseite") {
           return html(`<a href='${row.cells[index].data}'>Detailseite</a>`);

@@ -16,7 +16,7 @@ app.use(
 app.use(bodyParser.json());
 
 const port = process.env.PORT || process.env.VCAP_APP_PORT || 3099;
-
+console.log("process.env", process.env);
 app.enable("trust proxy");
 
 app.use((req, res, next) => {

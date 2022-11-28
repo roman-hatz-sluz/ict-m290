@@ -3,14 +3,16 @@ import { sqlFetch } from "./helpers";
 let groupValue = null;
 let resultPane;
 let sqlTextarea;
+let submit;
 
 export const initHome = () => {
   groupValue = document.body.getAttribute("data-group");
-  let shopName = document.body.getAttribute("data-name") || "";
-  let html = `"${shopName}: Start Page`;
-  const submit = document.getElementById("submit");
   sqlTextarea = document.getElementById("sql");
   resultPane = document.getElementById("result");
+  submit = document.getElementById("submit");
+  let shopName = document.body.getAttribute("data-name") || "";
+  let html = `"${shopName}: Start Page`;
+
   if (groupValue === "teacher") {
     html = `Inline-Skates: Start Page`;
   }
@@ -49,5 +51,22 @@ const onSqlSubmit = async () => {
   const result = await sqlFetch(data);
   submit.disabled = false;
 
+  if (result[1]) {
+    result[1] = linkTo(result[1], "/shopMaincat");
+  }
+
   renderData(result, sql, resultPane);
+};
+
+const linkTo = (data, link = "") => {
+  data.forEach((element) => {
+    console.log(element);
+    let params = [];
+    for (const [key, value] of Object.entries(element)) {
+      params.push(`${encodeURI(key)}=${encodeURI(value)}`);
+    }
+
+    element["Link"] = ` ${link}?${params.join("&")} `;
+  });
+  return data;
 };

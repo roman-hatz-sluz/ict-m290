@@ -49,7 +49,6 @@ ORDER BY table_name ASC`;
     for (const metric of metrics[1]) {
       data.sql = `
         SELECT COUNT(*) AS "Anzahl Zeilen", "${metric.create_time}" AS "Erstellungsdatum" FROM ${metric.table_name};
-    
         -- EXPLAIN ${metric.table_name};`;
       const tableData = await sqlFetch(data);
 
@@ -58,8 +57,6 @@ ORDER BY table_name ASC`;
         title: "Tabelle " + metric.table_name,
       });
     }
-    resultPane.classList.remove("loader");
-  } else {
-    resultPane.classList.remove("loader");
   }
+  resultPane.classList.remove("loader");
 }
