@@ -1,10 +1,10 @@
 ﻿{
    "teacher": {
-      "name": "Inline Skates",
+      "name": "Shop&Roll",
       "ENV": "CLEARDB_DATABASE_URL"
    },
    "al1": {
-      "name": "Italienisches Essen",
+      "name": "Cibo Italiano",
       "class": "S-MMA20aL",
       "ENV": "CLEARDB_PINK_URL"
    },
