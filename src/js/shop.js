@@ -11,7 +11,7 @@ export const initHome = () => {
   resultPane = document.getElementById("result");
   submit = document.getElementById("submit");
   let shopName = document.body.getAttribute("data-name") || "";
-  let html = `"${shopName}: Start Page`;
+  let html = `${shopName}: Start Page`;
 
   if (groupValue === "teacher") {
     html = `Inline-Skates: Start Page`;
