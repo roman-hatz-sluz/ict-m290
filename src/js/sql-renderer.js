@@ -90,10 +90,10 @@ function renderHtmlTable(tableHeaders, tableData, nohtml = false) {
           );
         } else if (val.includes("shopMaincat")) {
           return html(
-            `<a target="_blank" href='${row.cells[index].data}'>Produkte ansehen</a>`
+            `<a href='${row.cells[index].data}'>Produkte ansehen</a>`
           );
-        } else if (header === "Detailseite") {
-          return html(`<a href='${row.cells[index].data}'>Detailseite</a>`);
+        } else if (val.includes("shopDetail")) {
+          return html(`<a href='${row.cells[index].data}'>Produkt Details</a>`);
         } else {
           return val;
         }

@@ -1,3 +1,5 @@
+const queryString = require("query-string");
+
 import renderData from "./sql-renderer";
 import { sqlFetch } from "./helpers";
 let groupValue = null;
@@ -5,7 +7,7 @@ let resultPane;
 let sqlTextarea;
 let submit;
 
-export const initHome = () => {
+const initShopPage = (storageItem = "", linkTo = "") => {
   groupValue = document.body.getAttribute("data-group");
   sqlTextarea = document.getElementById("sql");
   resultPane = document.getElementById("result");
@@ -23,19 +25,35 @@ export const initHome = () => {
     onSqlSubmit();
   });
   sqlTextarea.addEventListener("change", () => {
-    localStorage.setItem("sql_shopHome", sqlTextarea.value);
+    localStorage.setItem(storageItem, sqlTextarea.value);
   });
 
-  if (localStorage.getItem("sql_shopHome")) {
-    sqlTextarea.value = localStorage.getItem("sql_shopHome");
+  if (localStorage.getItem(storageItem)) {
+    sqlTextarea.value = localStorage.getItem(storageItem);
   }
-  onSqlSubmit();
+  onSqlSubmit(linkTo);
 };
 
-export const initMaincat = () => {};
+export const initHome = () => {
+  initShopPage("sql_shopHome", "/shopMaincat");
+};
 
-const onSqlSubmit = async () => {
-  let sql = sqlTextarea.value;
+export const initMaincat = () => {
+  initShopPage("sql_shopMaincat", "/shopDetail");
+};
+
+const parseSql = (sql) => {
+  const parsed = queryString.parse(location.search);
+
+  for (let key in parsed) {
+    sql = sql.replace(`$${key}`, parsed[key]);
+  }
+
+  return sql;
+};
+
+const onSqlSubmit = async (linkTo = "") => {
+  let sql = parseSql(sqlTextarea.value);
   if (!sql) {
     sql = sqlTextarea.placeholder;
   }
@@ -52,15 +70,14 @@ const onSqlSubmit = async () => {
   submit.disabled = false;
 
   if (result[1]) {
-    result[1] = linkTo(result[1], "/shopMaincat");
+    result[1] = addlinkToCol(result[1], linkTo);
   }
 
   renderData(result, sql, resultPane);
 };
 
-const linkTo = (data, link = "") => {
+const addlinkToCol = (data, link = "") => {
   data.forEach((element) => {
-    console.log(element);
     let params = [];
     for (const [key, value] of Object.entries(element)) {
       params.push(`${encodeURI(key)}=${encodeURI(value)}`);

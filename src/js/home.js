@@ -38,7 +38,7 @@ ORDER BY table_name ASC`;
     pw: localStorage.getItem("pw"),
   };
   const metrics = await sqlFetch(data);
-  console.log("renderData", metrics);
+
   if (metrics[1]) {
     const tablesCount = metrics[1].length;
     if (tablesCount < 1) {
