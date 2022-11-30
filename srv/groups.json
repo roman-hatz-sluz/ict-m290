@@ -4,6 +4,11 @@
       "class": "",
       "ENV": "CLEARDB_DATABASE_URL"
    },
+   "test": {
+      "name": "Test Shop",
+      "class": "",
+      "ENV": "CLEARDB_YELLOW_URL"
+   },
    "al1": {
       "name": "Cibo Italiano",
       "class": "S-MMA20aL",
