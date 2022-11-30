@@ -86,6 +86,7 @@ body {
     rgba(0, 0, 0, 0.05) 40%,
     rgba(0, 0, 0, 0.1)
   );
+  pointer-events: none;
 }
 .home-section {
   margin-bottom: 8px;
@@ -122,7 +123,9 @@ pre {
   display: inline;
   margin-left: 4px;
 }
-
+.shop-nav {
+  font-size: 14px;
+}
 textarea {
   width: 80vw;
   font-family: "Courier New", Courier, monospace;

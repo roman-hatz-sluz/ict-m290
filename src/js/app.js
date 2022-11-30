@@ -5,6 +5,7 @@ import "../css/style.scss";
 import {
   initHome as initShopHome,
   initMaincat as initShopMaincat,
+  initShopDetails,
 } from "./shop";
 import initLogin from "./login.js";
 import initHomePage from "./home.js";
@@ -16,7 +17,10 @@ document.addEventListener(
   () => {
     const nav1 = document.getElementById("nav_1");
     const nav2 = document.getElementById("nav_2");
-    const nav3 = document.getElementById("nav_3");
+
+    const shop_nav_1 = document.getElementById("shop_nav_1");
+    const shop_nav_2 = document.getElementById("shop_nav_2");
+    const shop_nav_3 = document.getElementById("shop_nav_3");
     if (document.getElementById("login")) {
       initLogin(getSearchParameters());
     } else if (document.getElementById("homepage")) {
@@ -25,19 +29,16 @@ document.addEventListener(
     } else if (document.getElementById("shopHome")) {
       initShopHome();
       nav2.classList.add("nav-button-active");
+      shop_nav_1.classList.add("nav-button-active");
     } else if (document.getElementById("shopMaincat")) {
       initShopMaincat();
-    } /*
-      else if (document.getElementById("page_csv")) {
-      initCSV();
-    } else if (document.getElementById("import")) {
-      initImport();
-    } else if (document.getElementById("homepage")) {
-      initHomePage();
-    } else if (document.getElementById("maincat")) {
-      initMainCat(getSearchParameters());
-    } else if (document.getElementById("produkt")) {
-      initProdukt(getSearchParameters());*/ else {
+      nav2.classList.add("nav-button-active");
+      shop_nav_2.classList.add("nav-button-active");
+    } else if (document.getElementById("shopDetails")) {
+      initShopDetails();
+      nav2.classList.add("nav-button-active");
+      shop_nav_3.classList.add("nav-button-active");
+    } else {
       console.error("invalid page");
     }
   },

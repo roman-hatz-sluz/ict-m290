@@ -18,7 +18,7 @@ const initShopPage = (storageItem = "", linkTo = "") => {
     onSqlSubmit(linkTo);
   });
   format.addEventListener("click", () => {
-    onSqlFormat();
+    sqlTextarea.value = formatSql(sqlTextarea.value);
   });
   sqlTextarea.addEventListener("change", () => {
     localStorage.setItem(storageItem, sqlTextarea.value);
@@ -26,6 +26,7 @@ const initShopPage = (storageItem = "", linkTo = "") => {
 
   if (localStorage.getItem(storageItem)) {
     sqlTextarea.value = localStorage.getItem(storageItem);
+    sqlTextarea.value = formatSql(sqlTextarea.value);
   }
   onSqlSubmit(linkTo);
 };
@@ -35,53 +36,72 @@ export const initHome = () => {
 };
 
 export const initMaincat = () => {
-  initShopPage("sql_shopMaincat", "/shopDetail");
+  initShopPage("sql_shopMaincat", "/shopDetails");
+};
+export const initShopDetails = () => {
+  const nav2 = document.getElementById("shop_nav_2");
+  nav2.href += location.search;
+  initShopPage("sql_shopMaincat", "");
 };
 
 const parseSql = (sql) => {
-  const parsed = queryString.parse(location.search);
+  const getParams = queryString.parse(location.search);
 
-  for (let key in parsed) {
-    sql = sql.replace(`$${key}`, parsed[key]);
+  for (let key in getParams) {
+    sql = replaceAllHelper(sql, `_${key}_`, getParams[key].toLowerCase());
   }
 
   return sql;
 };
 
+const replaceAllHelper = (target, search, replacement) => {
+  return target.replace(new RegExp(search, "g"), replacement);
+};
+
 const onSqlSubmit = async (linkTo = "") => {
-  resultPane.classList.add("loader");
-  let sql = parseSql(sqlTextarea.value);
+  let sql = sqlTextarea.value;
   if (!sql) {
     sql = sqlTextarea.placeholder;
   }
-
+  sql = parseSql(sql);
   const data = {
     group: localStorage.getItem("group"),
     sql: sql,
     pw: localStorage.getItem("pw"),
   };
-  submit.disabled = true;
   resultPane.innerHTML = "";
+  resultPane.classList.add("loader");
+  // show spinner min time
+  submit.disabled = true;
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 300);
+  });
 
   const result = await sqlFetch(data);
   submit.disabled = false;
 
-  if (result[1]) {
+  if (result[1] && linkTo) {
     result[1] = addlinkToCol(result[1], linkTo);
   }
   resultPane.classList.remove("loader");
   renderData(result, sql, resultPane);
 };
-const onSqlFormat = () => {
+
+const formatSql = (sqlString) => {
+  let result = "";
   try {
-    sqlTextarea.value = sqlFormatter.format(sqlTextarea.value, {
+    result = sqlFormatter.format(sqlString, {
       tabWidth: 2,
       keywordCase: "upper",
       language: "mysql",
     });
   } catch (err) {
+    result = sqlString;
     console.error(err);
   }
+  return result;
 };
 
 const addlinkToCol = (data, link = "") => {

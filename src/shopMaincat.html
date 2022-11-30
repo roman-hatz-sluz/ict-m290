@@ -9,11 +9,37 @@ ___HEAD___
   ___HEADER___ ___NAV___
 
   <div class="content">
-    <h2 id="header">_NAME_ Hauptkategorie</h2>
+    <h2 id="header">_NAME_</h2>
+    <div class="shop-nav">
+      <div class="content-nav-item">
+        <a id="shop_nav_1" class="nav-button pure-button" href="/shopHome"
+          >Shop Home</a
+        >
+      </div>
+      <div class="content-nav-item">
+        <a id="shop_nav_2" class="nav-button pure-button" href="/shopMaincat"
+          >Produkte Liste</a
+        >
+      </div>
+      <div class="content-nav-item">
+        <a
+          id="shop_nav_3"
+          disabled="disabled"
+          class="nav-button pure-button"
+          href="/shopDetails"
+          >Produkt Details</a
+        >
+      </div>
+    </div>
 
     <h3>SQL</h3>
     <textarea
-      placeholder="SELECT * FROM Produkte  ;"
+      placeholder="SELECT
+      *
+    FROM
+      Produkte
+    WHERE
+      Hauptkategorie_ID = _ID_;"
       rows="10"
       cols="50"
       id="sql"></textarea>

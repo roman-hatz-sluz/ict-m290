@@ -94,6 +94,11 @@ app.get("/shopMaincat", (request, response) => {
   const html = getPageHtml(request, "shopMaincat");
   response.end(html);
 });
+app.get("/shopDetails", (request, response) => {
+  checkLogin(request, response);
+  const html = getPageHtml(request, "shopDetails");
+  response.end(html);
+});
 
 app.post("/sql", (request, response) => {
   const data = request.body;

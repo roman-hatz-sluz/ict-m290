@@ -1,7 +1,7 @@
 ___HEAD___
 
 <body
-  id="shopHome"
+  id="shopDetails"
   data-group="_GRUPPE_"
   data-class="_KLASSE_"
   data-name="_NAME_"
@@ -17,30 +17,25 @@ ___HEAD___
         >
       </div>
       <div class="content-nav-item">
-        <a
-          id="shop_nav_2"
-          disabled="disabled"
-          class="nav-button pure-button"
-          href="/shopMaincat"
+        <a id="shop_nav_2" class="nav-button pure-button" href="/shopMaincat"
           >Produkte Liste</a
         >
       </div>
       <div class="content-nav-item">
-        <a
-          id="shop_nav_3"
-          disabled="disabled"
-          class="nav-button pure-button"
-          href="/shopDetails"
+        <a id="shop_nav_3" class="nav-button pure-button" href="/shopDetails"
           >Produkt Details</a
         >
       </div>
     </div>
+
     <h3>SQL</h3>
     <textarea
-      placeholder="SELECT
+      placeholder='SELECT
       *
     FROM
-      Hauptkategorien;"
+      Produkte
+    WHERE
+      Name = "_Name_";'
       rows="10"
       cols="50"
       id="sql"></textarea>
@@ -57,7 +52,6 @@ ___HEAD___
       id="format">
       Formatieren
     </button>
-
     <br />
     <br />
     <br />
