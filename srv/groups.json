@@ -1,6 +1,7 @@
 ﻿{
    "teacher": {
       "name": "Shop&Roll",
+      "class": "",
       "ENV": "CLEARDB_DATABASE_URL"
    },
    "al1": {

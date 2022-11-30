@@ -5,24 +5,10 @@ let resultPane;
 
 export default function init() {
   groupValue = document.body.getAttribute("data-group");
-  let className = document.body.getAttribute("data-class") || "";
-  let shopName = document.body.getAttribute("data-name") || "";
-
-  let html = `Thema "${shopName}" (Gruppe ${className}${groupValue.replace(
-    /[^0-9]/g,
-    ""
-  )})`;
-  resultPane = document.getElementById("result");
-  if (groupValue === "teacher") {
-    html = `Thema Inline-Skates (Gruppe: Teacher)`;
-  }
-  if (groupValue === "m291aL" || groupValue === "m291b") {
-    html = groupValue;
-  }
-
-  document.getElementById("header").innerHTML = html;
-  getData(document.body.getAttribute("data-group"));
   localStorage.setItem("group", groupValue);
+  resultPane = document.getElementById("result");
+
+  getData(document.body.getAttribute("data-group"));
 }
 
 async function getData() {

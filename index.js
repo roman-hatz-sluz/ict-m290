@@ -49,12 +49,12 @@ app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (request, response) => {
-  const html = getPageHtml(request, "index");
+  let html = getPageHtml(request, "index");
   response.end(html);
 });
 
 app.get("/index.html", (request, response) => {
-  const html = getPageHtml(request, "index");
+  let html = getPageHtml(request, "index");
   response.end(html);
 });
 
@@ -163,19 +163,18 @@ const getPageHtml = (request, name = "") => {
   html = html.replace(/___NAV___/g, nav);
 
   if (group && group.sqlConnectionString) {
-    html = html.replace(
-      /_CONNECTION_STRING_/g,
-      JSON.stringify(group.sqlConnectionString)
-    );
+    html = html.replace(/_GRUPPE_/g, group.group);
+    html = html.replace(/_GROUPNAME_/g, `${group.group}-${group.class}`);
+    html = html.replace(/_NAME_/g, group.name);
+    html = html.replace(/_KLASSE_/g, group.class);
+
+    // for adminer link
     html = html.replace(/_USER_/g, group.sqlConnectionString.user);
     html = html.replace(/_DATABASE_/g, group.sqlConnectionString.database);
     html = html.replace(/_SERVER_/g, group.sqlConnectionString.host);
     // adminer password field does not work prefilled
     html = html.replace(/_PASSWORD_/g, group.sqlConnectionString.password);
 
-    html = html.replace(/_GRUPPE_/g, group.group);
-    html = html.replace(/_NAME_/g, group.name);
-    html = html.replace(/_KLASSE_/g, group.class);
     html = html.replace(/_ENV_/g, group.ENV);
   } else {
     console.error("invalid group configuration for pw:", pw);

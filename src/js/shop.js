@@ -2,24 +2,15 @@ const queryString = require("query-string");
 
 import renderData from "./sql-renderer";
 import { sqlFetch } from "./helpers";
-let groupValue = null;
+
 let resultPane;
 let sqlTextarea;
 let submit;
 
 const initShopPage = (storageItem = "", linkTo = "") => {
-  groupValue = document.body.getAttribute("data-group");
   sqlTextarea = document.getElementById("sql");
   resultPane = document.getElementById("result");
   submit = document.getElementById("submit");
-  let shopName = document.body.getAttribute("data-name") || "";
-  let html = `${shopName}: Start Page`;
-
-  if (groupValue === "teacher") {
-    html = `Inline-Skates: Start Page`;
-  }
-
-  document.getElementById("header").innerHTML = html;
 
   submit.addEventListener("click", () => {
     onSqlSubmit();

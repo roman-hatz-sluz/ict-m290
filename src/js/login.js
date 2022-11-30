@@ -1,6 +1,10 @@
 export default function init(params) {
   const searchParams = params;
   const submit = document.getElementById("submit");
+  const headerInfo = document
+    .getElementsByClassName("header-nav")[0]
+    .classList.add("header-nav__hidden");
+
   if (searchParams.invalidPw) {
     document.getElementById("error").style.display = "block";
   }
