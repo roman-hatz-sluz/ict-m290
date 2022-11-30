@@ -1,19 +1,24 @@
 const queryString = require("query-string");
-
+const sqlFormatter = require("sql-formatter");
 import renderData from "./sql-renderer";
 import { sqlFetch } from "./helpers";
 
 let resultPane;
 let sqlTextarea;
 let submit;
+let format;
 
 const initShopPage = (storageItem = "", linkTo = "") => {
   sqlTextarea = document.getElementById("sql");
   resultPane = document.getElementById("result");
   submit = document.getElementById("submit");
+  format = document.getElementById("format");
 
   submit.addEventListener("click", () => {
-    onSqlSubmit();
+    onSqlSubmit(linkTo);
+  });
+  format.addEventListener("click", () => {
+    onSqlFormat();
   });
   sqlTextarea.addEventListener("change", () => {
     localStorage.setItem(storageItem, sqlTextarea.value);
@@ -44,6 +49,7 @@ const parseSql = (sql) => {
 };
 
 const onSqlSubmit = async (linkTo = "") => {
+  resultPane.classList.add("loader");
   let sql = parseSql(sqlTextarea.value);
   if (!sql) {
     sql = sqlTextarea.placeholder;
@@ -63,8 +69,19 @@ const onSqlSubmit = async (linkTo = "") => {
   if (result[1]) {
     result[1] = addlinkToCol(result[1], linkTo);
   }
-
+  resultPane.classList.remove("loader");
   renderData(result, sql, resultPane);
+};
+const onSqlFormat = () => {
+  try {
+    sqlTextarea.value = sqlFormatter.format(sqlTextarea.value, {
+      tabWidth: 2,
+      keywordCase: "upper",
+      language: "mysql",
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const addlinkToCol = (data, link = "") => {

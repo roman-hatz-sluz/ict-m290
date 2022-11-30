@@ -54,6 +54,7 @@ body {
   width: 32px;
   height: 32px;
   background: white;
+  border-radius: 8px;
 }
 .header-title {
   align-self: center;
@@ -109,9 +110,8 @@ body {
     width: 100%;
   }
 }
-
-.sqlResult {
-  //font-family: 'Courier New', Courier, monospace;
+pre {
+  white-space: pre-wrap;
 }
 
 .content-nav {
