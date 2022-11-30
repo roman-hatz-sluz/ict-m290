@@ -48,7 +48,8 @@ const parseSql = (sql) => {
   const getParams = queryString.parse(location.search);
 
   for (let key in getParams) {
-    sql = replaceAllHelper(sql, `_${key}_`, getParams[key].toLowerCase());
+    let value = getParams[key] || "";
+    sql = replaceAllHelper(sql, `_${key}_`, value.toLowerCase());
   }
 
   return sql;
