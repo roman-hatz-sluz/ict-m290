@@ -4,6 +4,11 @@
       "class": "",
       "ENV": "CLEARDB_DATABASE_URL"
    },
+   "demo": {
+      "name": "Shop&Roll",
+      "class": "",
+      "ENV": "_OLD_CLEARDB_DATABASE_URL"
+   },
    "test": {
       "name": "Test Shop",
       "class": "",
