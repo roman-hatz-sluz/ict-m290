@@ -17,7 +17,7 @@
    "al1": {
       "name": "Cibo Italiano",
       "class": "S-MMA20aL",
-      "ENV": "CLEARDB_PINK_URL"
+      "ENV": "CLEARDB_SILVER_URL"
    },
    "al2": {
       "name": "SmartTech",
