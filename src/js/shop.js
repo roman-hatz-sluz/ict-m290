@@ -37,11 +37,12 @@ export const initHome = () => {
 
 export const initMaincat = () => {
   initShopPage("sql_shopMaincat", "/shopDetails");
+  localStorage.setItem("mainCatLink", location.search);
 };
 export const initShopDetails = () => {
   const nav2 = document.getElementById("shop_nav_2");
-  nav2.href += location.search;
-  initShopPage("sql_shopMaincat", "");
+  nav2.href += localStorage.getItem("mainCatLink");
+  initShopPage("sql_shopDetails", "");
 };
 
 const parseSql = (sql) => {
