@@ -103,5 +103,15 @@
       "name": "lisc Proteins",
       "class": "S-MMA20b",
       "ENV": "CLEARDB_OLIVE_URL"
+   },
+   "Notfall1": {
+      "name": "Notfall1",
+      "class": "Notfall1",
+      "ENV": "CLEARDB_AMBER_URL"
+   },
+   "Notfall2": {
+      "name": "Notfall2",
+      "class": "Notfall2",
+      "ENV": "CLEARDB_AQUA_URL"
    }
 }
