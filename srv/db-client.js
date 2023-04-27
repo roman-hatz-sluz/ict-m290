@@ -64,11 +64,9 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
 };
 
 const getGroupData = (pw = "") => {
-  //console.log("pw  xxxxx", pw)
   let result = null;
   const groups = Object.keys(dbConfig);
   groups.forEach((g) => {
-    //console.log(g, dbConfig[g], process.env[dbConfig[g].ENV])
     const sqlQueryString = process.env[dbConfig[g].ENV] || "";
     const sqlConnectionString = parseDbUrl(sqlQueryString);
 

@@ -34,6 +34,11 @@
       "class": "S-MMA20aL",
       "ENV": "CLEARDB_GRAY_URL"
    },
+   "al5": {
+      "name": "al5",
+      "class": "S-MMA20aL",
+      "ENV": "CLEARDB_PURPLE_URL"
+   },
    "cl1": {
       "name": "Bergmann Brillen",
       "class": "S-MMA20cL",
@@ -113,5 +118,10 @@
       "name": "Notfall2",
       "class": "Notfall2",
       "ENV": "CLEARDB_AQUA_URL"
+   },
+   "Unused1": {
+      "name": "Unused1",
+      "class": "Unused1",
+      "ENV": "CLEARDB_WHITE_URL"
    }
 }
