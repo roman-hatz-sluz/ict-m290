@@ -169,7 +169,7 @@ const getPageHtml = (request, name = "") => {
 
   if (group && group.sqlConnectionString) {
     html = html.replace(/_GRUPPE_/g, group.group);
-    html = html.replace(/_GROUPNAME_/g, `${group.group}-${group.class}`);
+    html = html.replace(/_GROUPNAME_/g, `${group.group}`);
     html = html.replace(/_NAME_/g, group.name);
     html = html.replace(/_KLASSE_/g, group.class);
 
