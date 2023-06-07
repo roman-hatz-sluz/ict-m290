@@ -110,8 +110,8 @@
       "ENV": "CLEARDB_OLIVE_URL"
    },
    "Notfall1": {
-      "name": "Notfall1",
-      "class": "Notfall1",
+      "name": "Splash",
+      "class": "S-MMA20aL",
       "ENV": "CLEARDB_AMBER_URL"
    },
    "Notfall2": {
