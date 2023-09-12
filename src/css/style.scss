@@ -47,9 +47,9 @@ body {
   text-align: center;
   padding: 4px;
   margin: 20px;
-  border-radius: 12px;
-  border: 2px solid #444;
-  background: linear-gradient(to left, #225e96, #444);
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  background: radial-gradient(circle at center, #225e96, #444);
 }
 .header-logo {
   align-self: center;
@@ -112,9 +112,9 @@ body {
   a {
     color: #f0f0f0;
   }
-  border-radius: 12px;
-  border: 2px solid #444;
-  background: linear-gradient(to left, #225e96, #444);
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: radial-gradient(circle at center, #225e96, #444);
 }
 
 .result-home {
