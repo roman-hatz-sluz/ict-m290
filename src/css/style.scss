@@ -1,5 +1,6 @@
 body {
-  background-color: #e3e3e3;
+  /*background-color: #e3e3e3;*/
+  background: radial-gradient(circle at center, #e3e3e3, #225e96);
   color: #444444;
   display: flex;
   flex-direction: column;
@@ -40,7 +41,7 @@ body {
   display: grid;
   grid-template-columns: 50px 1fr 200px;
   background-color: #444444;
-  color: #ffffff;
+  color: #f0f0f0;
   padding: 4px;
   font-size: 16px;
   text-align: center;
@@ -56,7 +57,7 @@ body {
 .header-logo-img {
   width: 32px;
   height: 32px;
-  background: white;
+  background: #f0f0f0;
   border-radius: 8px;
 }
 .header-title {
@@ -67,7 +68,7 @@ body {
 .header-nav {
   align-self: center;
   justify-self: end;
-  color: white;
+  color: #f0f0f0;
   font-size: 14px;
   margin-right: 16px;
   text-align: right;
@@ -76,11 +77,11 @@ body {
   display: none;
 }
 .header-nav a {
-  color: white;
+  color: #f0f0f0;
   font-size: 14px;
 }
 .nav-button {
-  background-color: #fff;
+  background-color: #f0f0f0;
   color: #0078e7;
 }
 .nav-button-active {
@@ -100,14 +101,14 @@ body {
 }
 .footer-content {
   background-color: #444444;
-  color: #ffffff;
+  color: #f0f0f0;
   padding: 4px;
   font-size: 14px;
   text-align: center;
   padding: 4px;
   margin: 20px;
   a {
-    color: #ffffff;
+    color: #f0f0f0;
   }
 }
 
@@ -127,7 +128,6 @@ pre {
 
 .content-nav-item {
   display: inline;
-  margin-left: 4px;
 }
 .shop-nav {
   font-size: 14px;
@@ -261,4 +261,9 @@ svg text {
 
 .text-animation-wrapper {
   margin-top: 48px;
+}
+
+/* overrides */
+.pure-button {
+  border-radius: 12px;
 }
