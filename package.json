@@ -72,7 +72,12 @@
     "copy-assets": "mkdir -p public/src; cp -r src/assets public/assets/",
     "lint": "node_modules/.bin/eslint ./src/js --fix --ext .js;",
     "lint-srv": "node_modules/.bin/eslint ./srv --fix --ext .js && node_modules/.bin/eslint index.js --fix --ext .js;",
-    "resetDB": "node srv/resetDB.js"
+    "create-30-dbs": "node -e 'require(\"./srv/manageJawsdb\").createJawsDBInstances(30)'",
+    "list-dbs": "node -e 'require(\"./srv/manageJawsdb\").listJawsDBInstances()'",
+    "create-db": "node -e 'require(\"./srv/manageJawsdb\").createJawsDBInstance()'",
+    "delete-all-db": "node -e 'require(\"./srv/manageJawsdb\").deleteAllJawsDBInstances()'",
+    "generate-public-json": "node -e 'require(\"./srv/manageJawsdb\").generatePublicJson()'",
+    "generate-private-json": "node -e 'require(\"./srv/manageJawsdb\").generatePrivateJson()'"
   },
   "author": "RH",
   "license": "ISC"

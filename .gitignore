@@ -5,3 +5,4 @@ public/
 vendor/
 .env
 secret.txt
+secret.json

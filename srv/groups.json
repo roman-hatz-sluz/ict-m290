@@ -1,127 +1,152 @@
 ﻿{
-  "teacher": {
-    "name": "Shop&Roll",
-    "class": "",
-    "ENV": "CLEARDB_DATABASE_URL"
-  },
-  "demo": {
-    "name": "Shop&Roll",
-    "class": "",
-    "ENV": "_OLD_CLEARDB_DATABASE_URL"
-  },
-  "test": {
-    "name": "Test Shop",
-    "class": "",
-    "ENV": "CLEARDB_YELLOW_URL"
-  },
   "al1": {
-    "name": "Cibo Italiano",
-    "class": "S-MMA20aL",
-    "ENV": "CLEARDB_SILVER_URL"
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_AMBER_URL"
   },
   "al2": {
-    "name": "SmartTech",
-    "class": "S-MMA20aL",
-    "ENV": "JAWSDB_URL"
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_BLACK_URL"
   },
   "al3": {
-    "name": "Splash",
-    "class": "S-MMA20aL",
-    "ENV": "CLEARDB_BLACK_URL"
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_BLUE_URL"
   },
   "al4": {
-    "name": "Blue Stone",
-    "class": "S-MMA20aL",
-    "ENV": "CLEARDB_GRAY_URL"
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_BRONZE_URL"
   },
   "al5": {
-    "name": "al5",
-    "class": "S-MMA20aL",
-    "ENV": "CLEARDB_PURPLE_URL"
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_BROWN_URL"
+  },
+  "al6": {
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_CHARCOAL_URL"
+  },
+  "al7": {
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_COBALT_URL"
+  },
+  "al8": {
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_COPPER_URL"
+  },
+  "al9": {
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_CRIMSON_URL"
+  },
+  "al10": {
+    "name": "",
+    "class": "MMA21-aL",
+    "ENV": "JAWSDB_CYAN_URL"
   },
   "cl1": {
-    "name": "Bergmann Brillen",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_COBALT_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_GOLD_URL"
   },
   "cl2": {
-    "name": "Cintura",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_CYAN_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_GRAY_URL"
   },
   "cl3": {
-    "name": "Schokiss",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_ONYX_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_GREEN_URL"
   },
   "cl4": {
-    "name": "Arcadia",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_BLUE_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_IVORY_URL"
   },
   "cl5": {
-    "name": "schneebrett.ch",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_TEAL_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_JADE_URL"
   },
   "cl6": {
-    "name": "Convecta",
-    "class": "S-MMA20cL",
-    "ENV": "CLEARDB_JADE_URL"
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_MAROON_URL"
+  },
+  "cl7": {
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_MAUVE_URL"
+  },
+  "cl8": {
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_NAVY_URL"
+  },
+  "cl9": {
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_OLIVE_URL"
+  },
+  "cl10": {
+    "name": "",
+    "class": "MMA21-cL",
+    "ENV": "JAWSDB_ONYX_URL"
   },
   "b1": {
-    "name": "Bijouterie d'Amélie",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_CHARCOAL_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_ORANGE_URL"
   },
   "b2": {
-    "name": "nägelischueh.ch",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_CRIMSON_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_PINK_URL"
   },
   "b3": {
-    "name": "Walters Wasserpfeifen",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_PUCE_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_PUCE_URL"
   },
   "b4": {
-    "name": "Fergys Furnitures",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_ROSE_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_PURPLE_URL"
   },
   "b5": {
-    "name": "Thrift me",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_COPPER_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_RED_URL"
   },
   "b6": {
-    "name": "Velove",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_ORANGE_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_SILVER_URL"
   },
   "b7": {
-    "name": "Sportswear",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_RED_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_TEAL_URL"
   },
   "b8": {
-    "name": "lisc Proteins",
-    "class": "S-MMA20b",
-    "ENV": "CLEARDB_OLIVE_URL"
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_URL"
   },
-  "Class": {
-    "name": "Empty1",
-    "class": "Unused",
-    "ENV": "CLEARDB_AMBER_URL"
+  "b9": {
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_WHITE_URL"
   },
-  "Unused2": {
-    "name": "Unused2",
-    "class": "Unused",
-    "ENV": "CLEARDB_AQUA_URL"
-  },
-  "Unused3": {
-    "name": "Unused3",
-    "class": "Unused",
-    "ENV": "CLEARDB_WHITE_URL"
+  "b10": {
+    "name": "",
+    "class": "MMA21-b",
+    "ENV": "JAWSDB_YELLOW_URL"
   }
 }
