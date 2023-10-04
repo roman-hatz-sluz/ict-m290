@@ -12,6 +12,8 @@ export default function init() {
 }
 
 async function getData() {
+  // deactivate for now
+  return false;
   resultPane.classList.add("loader");
   document.getElementById("result").innerHTML = "";
   const METRICS_SQL = `SELECT table_name, create_time
