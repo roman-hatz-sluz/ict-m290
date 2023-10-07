@@ -44,8 +44,8 @@
     "class": "MMA21-aL",
     "ENV": "JAWSDB_CRIMSON_URL"
   },
-  "al10": {
-    "name": "",
+  "Klasse MMA21-aL": {
+    "name": "Übungs-Datenbank für die ganze Klasse",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_CYAN_URL"
   },
@@ -94,8 +94,8 @@
     "class": "MMA21-cL",
     "ENV": "JAWSDB_OLIVE_URL"
   },
-  "cl10": {
-    "name": "",
+  "Klasse MMA21-cL": {
+    "name": "Übungs-Datenbank für die ganze Klasse",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_ONYX_URL"
   },
@@ -144,8 +144,8 @@
     "class": "MMA21-b",
     "ENV": "JAWSDB_WHITE_URL"
   },
-  "b10": {
-    "name": "",
+  "Klasse MMA21-b": {
+    "name": "Übungs-Datenbank für die ganze Klasse",
     "class": "MMA21-b",
     "ENV": "JAWSDB_YELLOW_URL"
   }
