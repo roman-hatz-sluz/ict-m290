@@ -14,6 +14,6 @@
 # DB Commands 
 - npm run list-dbs
 - npm run create-30-dbs (takes a while)
-- npm run delete-all-db (caution!)
+- npm run delete-all-db (deletes all databases without further confirmation)
 - npm run generate-public-json (generates access data for the ict-290 application, upload the file to the server)
-- npm run generate-private-json (caution! only use locally, generates access data for the ict-290 application including passwords => do not upload this file as clear text)
+- npm run generate-private-json (caution: only use locally, generates access data for the ict-290 application including passwords. do not upload this file as clear text)
