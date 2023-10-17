@@ -1,6 +1,7 @@
 const path = require("path");
-const webpack = require("webpack"); 
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { VueLoaderPlugin } = require("vue-loader"); // Importieren Sie das VueLoaderPlugin
 
 const outputPath = "public/";
 
@@ -19,7 +20,7 @@ module.exports = (env = {}, argv) => {
         jQuery: "jquery",
         "window.jQuery": "jquery",
       }),
-      
+      new VueLoaderPlugin(),
     ],
     output: {
       path: path.resolve(__dirname, outputPath),
@@ -30,6 +31,10 @@ module.exports = (env = {}, argv) => {
 
     module: {
       rules: [
+        {
+          test: /\.vue$/,
+          loader: "vue-loader",
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -114,7 +119,6 @@ module.exports = (env = {}, argv) => {
             },
           ],
         },
-        
       ],
     },
   };

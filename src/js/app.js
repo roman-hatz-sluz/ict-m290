@@ -1,3 +1,7 @@
+import { createApp } from "vue"; // Importieren von Vue
+import LoginComponent from "./LoginComponent.vue"; // Importieren Ihrer LoginComponent
+import initHomePage from "./home.js";
+
 import "purecss/build/pure-min.css";
 import "purecss/build/grids-responsive-min.css";
 import "../css/style.scss";
@@ -7,14 +11,13 @@ import {
   initMaincat as initShopMaincat,
   initShopDetails,
 } from "./shop";
-import initLogin from "./login.js";
-import initHomePage from "./home.js";
 
-import { getSearchParameters } from "./helpers.js";
+const app = createApp(LoginComponent);
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+    app.mount("#app");
     const nav1 = document.getElementById("nav_1");
     const nav2 = document.getElementById("nav_2");
 
@@ -22,7 +25,6 @@ document.addEventListener(
     const shop_nav_2 = document.getElementById("shop_nav_2");
     const shop_nav_3 = document.getElementById("shop_nav_3");
     if (document.getElementById("login")) {
-      initLogin(getSearchParameters());
     } else if (document.getElementById("homepage")) {
       initHomePage();
       nav1.classList.add("nav-button-active");
