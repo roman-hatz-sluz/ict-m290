@@ -1,26 +1,26 @@
 ﻿{
   "al1": {
-    "name": "",
+    "name": "KOLÖRS",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_AMBER_URL"
   },
   "al2": {
-    "name": "",
+    "name": "Drinks of the Galaxy",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_BLACK_URL"
   },
   "al3": {
-    "name": "",
+    "name": "Gitarren",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_BLUE_URL"
   },
   "al4": {
-    "name": "",
+    "name": "Footwear Studio",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_BRONZE_URL"
   },
   "al5": {
-    "name": "",
+    "name": "Stoner Studios",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_BROWN_URL"
   },
@@ -40,37 +40,37 @@
     "ENV": "JAWSDB_COPPER_URL"
   },
   "al9": {
-    "name": "",
+    "name": "Demo Teacher",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_CRIMSON_URL"
   },
   "Klasse MMA21-aL": {
-    "name": "Übungs-Datenbank für die ganze Klasse",
+    "name": "",
     "class": "MMA21-aL",
     "ENV": "JAWSDB_CYAN_URL"
   },
   "cl1": {
-    "name": "",
+    "name": "Roadrunner Skis",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_GOLD_URL"
   },
   "cl2": {
-    "name": "",
+    "name": "Phone Flow",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_GRAY_URL"
   },
   "cl3": {
-    "name": "",
+    "name": "Quattro Quartier",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_GREEN_URL"
   },
   "cl4": {
-    "name": "",
+    "name": "Snacks",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_IVORY_URL"
   },
   "cl5": {
-    "name": "",
+    "name": "Dienstag",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_JADE_URL"
   },
@@ -95,42 +95,42 @@
     "ENV": "JAWSDB_OLIVE_URL"
   },
   "Klasse MMA21-cL": {
-    "name": "Übungs-Datenbank für die ganze Klasse",
+    "name": "",
     "class": "MMA21-cL",
     "ENV": "JAWSDB_ONYX_URL"
   },
   "b1": {
-    "name": "",
+    "name": "Candy-Shop",
     "class": "MMA21-b",
     "ENV": "JAWSDB_ORANGE_URL"
   },
   "b2": {
-    "name": "",
+    "name": "Brillen-Store (Klara)",
     "class": "MMA21-b",
     "ENV": "JAWSDB_PINK_URL"
   },
   "b3": {
-    "name": "",
+    "name": "Haircare",
     "class": "MMA21-b",
     "ENV": "JAWSDB_PUCE_URL"
   },
   "b4": {
-    "name": "",
+    "name": "Library (Book it!)",
     "class": "MMA21-b",
     "ENV": "JAWSDB_PURPLE_URL"
   },
   "b5": {
-    "name": "",
+    "name": "Drum Machines",
     "class": "MMA21-b",
     "ENV": "JAWSDB_RED_URL"
   },
   "b6": {
-    "name": "",
+    "name": "Pflanzen-Shop (Planeya)",
     "class": "MMA21-b",
     "ENV": "JAWSDB_SILVER_URL"
   },
   "b7": {
-    "name": "",
+    "name": "Unihockeystöcke",
     "class": "MMA21-b",
     "ENV": "JAWSDB_TEAL_URL"
   },
@@ -144,7 +144,7 @@
     "class": "MMA21-b",
     "ENV": "JAWSDB_WHITE_URL"
   },
-  "Klasse MMA21-b": {
+  "Klasse MMA21b": {
     "name": "Übungs-Datenbank für die ganze Klasse",
     "class": "MMA21-b",
     "ENV": "JAWSDB_YELLOW_URL"

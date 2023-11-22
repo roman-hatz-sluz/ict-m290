@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 app.use(cors());
 
 // serve assets
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/static"));
 
 app.get("/", (request, response) => {
   let html = getPageHtml(request, "index");
@@ -144,21 +144,21 @@ const getPageHtml = (request, name = "") => {
   let html = "";
   const pw = request.session.pw;
   const group = DBClient.getGroupData(pw);
-  html = fs.readFileSync(__dirname + "/public/src/" + name + ".html", "utf8");
+  html = fs.readFileSync(__dirname + "/static/src/" + name + ".html", "utf8");
   const head = fs.readFileSync(
-    __dirname + "/public/src/incl_head.html",
+    __dirname + "/static/src/incl_head.html",
     "utf8"
   );
   const header = fs.readFileSync(
-    __dirname + "/public/src/incl_header.html",
+    __dirname + "/static/src/incl_header.html",
     "utf8"
   );
   const footer = fs.readFileSync(
-    __dirname + "/public/src/incl_footer.html",
+    __dirname + "/static/src/incl_footer.html",
     "utf8"
   );
   const nav = fs.readFileSync(
-    __dirname + "/public/src/incl_content-nav.html",
+    __dirname + "/static/src/incl_content-nav.html",
     "utf8"
   );
 
