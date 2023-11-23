@@ -1,6 +1,8 @@
 const path = require("path");
-const webpack = require("webpack"); 
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const outputPath = "public/";
 
@@ -13,13 +15,19 @@ module.exports = (env = {}, argv) => {
       app: ["./src/js/app.js"],
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({}),
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
         "window.jQuery": "jquery",
       }),
-      
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "./src/*.html", to: "./" },
+          { from: "./src/assets", to: "./" },
+        ],
+      }),
     ],
     output: {
       path: path.resolve(__dirname, outputPath),
@@ -114,7 +122,6 @@ module.exports = (env = {}, argv) => {
             },
           ],
         },
-        
       ],
     },
   };
