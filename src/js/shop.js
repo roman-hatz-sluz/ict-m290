@@ -1,5 +1,6 @@
-const queryString = require("query-string");
+ 
 const sqlFormatter = require("sql-formatter");
+import queryString from "query-string";
 import renderData from "./sql-renderer";
 import { sqlFetch } from "./helpers";
 
