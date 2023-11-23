@@ -61,12 +61,11 @@
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "workbox-cli": "^7.0.0"
+    "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
     "start": "node ./index.js",
-    "start-watch": "nodemon --watch",
+    "start-watch": "nodemon ./index.js --watch",
     "build": "node_modules/.bin/webpack --mode production",
     "dev": "webpack --mode development --watch",
     "lint": "node_modules/.bin/eslint ./src/js --fix --ext .js;",
