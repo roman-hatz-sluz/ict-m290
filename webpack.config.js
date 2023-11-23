@@ -25,7 +25,7 @@ module.exports = (env = {}, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: "./src/*.html", to: "./" },
-          { from: "./src/assets", to: "./" },
+          { from: "./src/assets", to: "./assets" },
         ],
       }),
     ],
