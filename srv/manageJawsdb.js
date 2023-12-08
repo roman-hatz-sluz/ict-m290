@@ -20,7 +20,7 @@ function runCommand(command) {
 async function createJawsDBInstance() {
   try {
     const result = await runCommand(
-      `heroku addons:create jawsdb:kitefin -a ${appName}`
+      `heroku addons:create jawsdb:kitefin -a ${appName}`,
     );
     console.log(result);
   } catch (error) {
@@ -93,14 +93,20 @@ async function generateJson(hasPassword) {
       };
       if (hasPassword) {
         const configVar = await runCommand(
-          `heroku config:get ${envVar} -a ${appName}`
+          `heroku config:get ${envVar} -a ${appName}`,
         );
         result[key].password = parseDbUrl(configVar).password;
+        result[key].sqlstring = configVar;
       }
     }
   }
-
-  const filename = `groups.json`;
+  const ts = new Date()
+    .toISOString()
+    .replace(/T/, "--")
+    .replace(/:/, "-")
+    .split(".")[0]
+    .replace(":", "_");
+  const filename = `groups.json_${ts}`;
   fs.writeFileSync(filename, JSON.stringify(result, null, 2), "utf8");
   console.log(`Data written to ${filename}`);
 }

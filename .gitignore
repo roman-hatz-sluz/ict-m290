@@ -5,5 +5,5 @@ public/
 static/
 vendor/
 .env
-secret.txt
-secret.json
+_secret/
+ 
