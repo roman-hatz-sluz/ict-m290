@@ -1,29 +1,33 @@
 
-  -- al5 --
+  -- b6 --
  
   
     -- (1) Anzahl Hauptkategorien --
-    SELECT COUNT(*) AS "Anzahl" FROM collection;
+    SELECT COUNT(*) AS "Anzahl" FROM maincategory;
     /*
     Resultat:
     [
   {
-    "Anzahl": 0
+    "Anzahl": 5
   }
 ]
     */
     
     -- (2) Bilder bei Hauptkategorien --
-    SELECT DISTINCT image FROM collection;
+    SELECT DISTINCT image FROM maincategory;
     /*
     Resultat:
-    []
+    [
+  {
+    "image": ""
+  }
+]
     */
     
     -- (3) Produkte ohne passende Hauptkategorie --
     SELECT *
     FROM product p
-    WHERE p.collection_ID NOT IN (SELECT collection_id FROM collection)
+    WHERE p.maincategory_id NOT IN (SELECT maincategory_id FROM maincategory)
      ;
     /*
     Resultat:
@@ -36,7 +40,7 @@
     Resultat:
     [
   {
-    "Anzahl": 0
+    "Anzahl": 1440
   }
 ]
     */
@@ -47,16 +51,20 @@
     Resultat:
     [
   {
-    "Anzahl": 0
+    "Anzahl": 10
   }
 ]
     */
     
     -- (6) Bilder bei Produkte --
-    SELECT DISTINCT product_image FROM product;
+    SELECT DISTINCT image FROM product;
     /*
     Resultat:
-    []
+    [
+  {
+    "image": ""
+  }
+]
     */
     
     -- (7) Anzahl Duplikate bei Produktvariationen --
@@ -64,7 +72,7 @@
     FROM (
         SELECT COUNT(name)
         FROM product
-        GROUP BY name, weight, inventory, color
+        GROUP BY name, size_in_cm, color, pot
         HAVING COUNT(*) > 1
     ) AS duplicates;
     /*
@@ -80,15 +88,15 @@
     SELECT p.*
     FROM product p
     INNER JOIN (
-        SELECT name, weight, inventory, color
+        SELECT name, size_in_cm, color, pot
         FROM product
-        GROUP BY name, weight, inventory, color
+        GROUP BY name, size_in_cm, color, pot
         HAVING COUNT(*) > 1
     ) as dup
     ON p.name = dup.name AND 
-    p.weight = dup.weight AND 
-    p.inventory = dup.inventory AND 
-    p.color = dup.color;;
+    p.size_in_cm = dup.size_in_cm AND 
+    p.color = dup.color AND 
+    p.pot = dup.pot;;
     /*
     Resultat:
     []

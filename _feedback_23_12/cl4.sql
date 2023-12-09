@@ -1,29 +1,33 @@
 
-  -- al5 --
+  -- cl4 --
  
   
     -- (1) Anzahl Hauptkategorien --
-    SELECT COUNT(*) AS "Anzahl" FROM collection;
+    SELECT COUNT(*) AS "Anzahl" FROM hauptkategorien;
     /*
     Resultat:
     [
   {
-    "Anzahl": 0
+    "Anzahl": 6
   }
 ]
     */
     
     -- (2) Bilder bei Hauptkategorien --
-    SELECT DISTINCT image FROM collection;
+    SELECT DISTINCT Bild FROM hauptkategorien;
     /*
     Resultat:
-    []
+    [
+  {
+    "Bild": ""
+  }
+]
     */
     
     -- (3) Produkte ohne passende Hauptkategorie --
     SELECT *
-    FROM product p
-    WHERE p.collection_ID NOT IN (SELECT collection_id FROM collection)
+    FROM produkte p
+    WHERE p.hauptkategorie_id NOT IN (SELECT hauptkategorie_id FROM hauptkategorien)
      ;
     /*
     Resultat:
@@ -31,7 +35,7 @@
     */
     
     -- (4) Anzahl Produkte --
-    SELECT COUNT(*) AS "Anzahl" FROM product;
+    SELECT COUNT(*) AS "Anzahl" FROM produkte;
     /*
     Resultat:
     [
@@ -42,7 +46,7 @@
     */
     
     -- (5) Anzahl unterschiedliche Produktnamen --
-    SELECT COUNT(DISTINCT(name)) AS "Anzahl" FROM product;
+    SELECT COUNT(DISTINCT(Produktname)) AS "Anzahl" FROM produkte;
     /*
     Resultat:
     [
@@ -53,7 +57,7 @@
     */
     
     -- (6) Bilder bei Produkte --
-    SELECT DISTINCT product_image FROM product;
+    SELECT DISTINCT Bild_URL FROM produkte;
     /*
     Resultat:
     []
@@ -62,9 +66,9 @@
     -- (7) Anzahl Duplikate bei Produktvariationen --
     SELECT COUNT(*) AS total_duplicates
     FROM (
-        SELECT COUNT(name)
-        FROM product
-        GROUP BY name, weight, inventory, color
+        SELECT COUNT(Produktname)
+        FROM produkte
+        GROUP BY Produktname, Grösse, Geschmack, Farbe
         HAVING COUNT(*) > 1
     ) AS duplicates;
     /*
@@ -78,17 +82,17 @@
     
     -- (8) Duplikate bei Produktvariationen --
     SELECT p.*
-    FROM product p
+    FROM produkte p
     INNER JOIN (
-        SELECT name, weight, inventory, color
-        FROM product
-        GROUP BY name, weight, inventory, color
+        SELECT Produktname, Grösse, Geschmack, Farbe
+        FROM produkte
+        GROUP BY Produktname, Grösse, Geschmack, Farbe
         HAVING COUNT(*) > 1
     ) as dup
-    ON p.name = dup.name AND 
-    p.weight = dup.weight AND 
-    p.inventory = dup.inventory AND 
-    p.color = dup.color;;
+    ON p.Produktname = dup.Produktname AND 
+    p.Grösse = dup.Grösse AND 
+    p.Geschmack = dup.Geschmack AND 
+    p.Farbe = dup.Farbe;;
     /*
     Resultat:
     []
