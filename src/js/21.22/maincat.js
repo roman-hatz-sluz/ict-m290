@@ -49,9 +49,9 @@ export default function init(params) {
 function onSqlSubmit() {
   let sql = sqlTextarea.value;
   if (!sql) {
-    sql = sqlTextarea.placeholder;
+    return false;
   }
-  sql = sql.replace("$hauptkategorie_id", searchParams.hauptkategorie_id);
+  //sql = sql.replace("$hauptkategorie_id", searchParams.hauptkategorie_id);
   //sql = sql.includes("LIMIT ") ? sql : sql.replace(";", " LIMIT 1000;")
   const data = { group: group.value, sql: sql, pw: pw.value };
   submit.disabled = true;
@@ -79,9 +79,8 @@ function onSqlSubmit() {
           const productName = row["Produktname"]
             ? row["Produktname"]
             : row["produktname"];
-          row[
-            "Detailseite"
-          ] = `/produkt?produktname=${productName}&${queryString}`;
+          row["Detailseite"] =
+            `/produkt?produktname=${productName}&${queryString}`;
         });
       }
       submit.disabled = false;

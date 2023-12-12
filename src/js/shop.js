@@ -1,4 +1,3 @@
- 
 const sqlFormatter = require("sql-formatter");
 import queryString from "query-string";
 import renderData from "./sql-renderer";
@@ -64,7 +63,7 @@ const replaceAllHelper = (target, search, replacement) => {
 const onSqlSubmit = async (linkTo = "") => {
   let sql = sqlTextarea.value;
   if (!sql) {
-    sql = sqlTextarea.placeholder;
+    return false;
   }
   sql = parseSql(sql);
   const data = {

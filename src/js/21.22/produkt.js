@@ -46,13 +46,8 @@ export default function init(params) {
 function onSqlSubmit() {
   let sql = sqlTextarea.value;
   if (!sql) {
-    sql = sqlTextarea.placeholder;
+    return false;
   }
-  sql = sql.replaceAll(
-    "$produktname",
-    '"' + decodeURI(searchParams.produktname) + '"'
-  );
-  //sql = sql.includes("LIMIT ") ? sql : sql.replace(";", " LIMIT 1000;")
   const data = { group: group.value, sql: sql, pw: pw.value };
   submit.disabled = true;
   resultPane.innerHTML = "";
