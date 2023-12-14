@@ -20,7 +20,7 @@ export default function renderData(
   data,
   sqlQueries,
   resultPane,
-  options = { nohtml: false, title: "" }
+  options = { nohtml: false, title: "" },
 ) {
   const queries = sqlQueries.split(";").map((s) => {
     return s.trim();
@@ -32,8 +32,8 @@ export default function renderData(
   if (data.length > 10000) {
     resultPane.appendChild(
       renderSystemOutput(
-        "Fehler. Sie haben mehr als 10000 Datensätze selektiert."
-      )
+        "Fehler. Sie haben mehr als 10000 Datensätze selektiert.",
+      ),
     );
     return false;
   }
@@ -58,7 +58,7 @@ export default function renderData(
           tableData.push(Object.values(row));
         });
         resultPane.appendChild(
-          renderHtmlTable(tableHeaders, tableData, options.nohtml)
+          renderHtmlTable(tableHeaders, tableData, options.nohtml),
         );
       } else {
         resultPane.appendChild(renderSystemOutput("Keine Resultate gefunden"));
@@ -82,15 +82,26 @@ function renderHtmlTable(tableHeaders, tableData, nohtml = false) {
         val = val.replace(/\r?\n|\r/, "");
         if (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(val)) {
           return html(
-            `<img class="productImage" src='${row.cells[index].data}'> </img>`
+            `<a 
+              class="productImageLink" 
+              title="Original Bild öffnen" 
+              href='${row.cells[index].data}' 
+              target='_blank' rel='noopener noreferrer'>  
+            <img 
+                class="productImage" 
+                src='${row.cells[index].data}'>
+            </img></a>`,
           );
         } else if (val.startsWith("http")) {
           return html(
-            `<a target="_blank" href='${row.cells[index].data}'>Externer Link</a>`
+            `<a target="_blank" href='${row.cells[index].data}'>Externer Link</a>`,
           );
         } else if (val.includes("shopMaincat")) {
           return html(
-            `<a href='${row.cells[index].data}'>Produkte ansehen</a>`
+            `<a 
+              title="Zur Produktliste"
+              class="productDetailLink" 
+              href='${row.cells[index].data}'>Produkte ansehen</a>`,
           );
         } else if (val.includes("shopDetails")) {
           return html(`<a href='${row.cells[index].data}'>Produkt Details</a>`);

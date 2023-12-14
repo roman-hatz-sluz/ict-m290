@@ -149,7 +149,6 @@ textarea {
 
 #errorMsg {
   color: red;
-  // background-color: black;
   padding: 4px;
 }
 
@@ -157,7 +156,14 @@ textarea {
   width: 200px;
   height: 200px;
 }
-
+.productImageLink {
+  text-decoration: none;
+  display: flex;
+}
+.productImage:hover,
+.productDetailLink:hover {
+  filter: brightness(0.8) hue-rotate(20deg);
+}
 .loader {
   font-size: 10px;
   margin: 50px auto;
