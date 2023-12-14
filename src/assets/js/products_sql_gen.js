@@ -1,38 +1,78 @@
+// (1) Ändern Sie das Beispiel für ihr Grundsortiment. Fügen Sie alle Produkte aus ihrem Grundsortiment hinzu.
 const products = [
   {
     Produktname: "Rollerblade Zetrablade",
     Preis: 150,
-    Lagerbestand: 1,
-    Hauptkategorie_ID: 21,
+    Hauptkategorie_ID: 1,
+    Schuhgrösse: 43,
+    Rollen_Durchmesser: 90,
+    Farbe: "grün",
   },
-  // Weitere Produkte können hier hinzugefügt werden
+  {
+    Produktname: "Adapt Brutale",
+    Preis: 233,
+    Hauptkategorie_ID: 2,
+    Schuhgrösse: 42,
+    Rollen_Durchmesser: 60,
+    Farbe: "grün",
+  },
 ];
 
-// Kategorien für die Produktvarianten definieren
+// (2) Ändern Sie die Kategorien so, dass ihre Kategorien abgebildet werden
 const categories = [
-  { name: "Schuhgrösse", values: [39, 40, 41, 42, 43, 44] },
-  { name: "Rollen_Durchmesser", values: [56, 60, 90, 110] },
-  { name: "Farbe_ID", values: [1, 11, 21, 31, 41] },
+  {
+    name: "Schuhgrösse",
+    values: [39, 40, 41, 42, 43, 44],
+  },
+  {
+    name: "Rollen_Durchmesser",
+    values: [56, 60, 90, 110],
+  },
+  {
+    name: "Farbe",
+    values: ["grün", "rot", "blau", "gelb", "lila"],
+  },
 ];
 
-// Werte für das SQL-Statement vorbereiten
-let values = [];
+// (3) Ändern Sie den Namen auf den Namen ihrer Produkte Tabelle.
+const TABLE_NAME = "Produkte";
 
-// Kombinationen der Kategoriewerte erstellen
-categories[0].values.forEach(schuhgroesse => {
-  categories[1].values.forEach(rollenDurchmesser => {
-    categories[2].values.forEach(farbeID => {
-      // Für jedes Produkt Kombinationen hinzufügen
-      products.forEach(product => {
-        // Wertekombination für das SQL-Statement
-        values.push(`("${product.Produktname}", ${product.Preis}, ${product.Lagerbestand}, ${product.Hauptkategorie_ID}, ${schuhgroesse}, ${rollenDurchmesser}, ${farbeID})`);
-      });
+// (4) Den folgenden Code müssen Sie nicht verstehen
+
+let valuesToInsert = [];
+products.forEach((product) => {
+  const combinations = categories
+    .map((category) => category.values)
+    .reduce((a, b) => {
+      return a.flatMap((d) => b.map((e) => [d, e].flat()));
     });
+
+  combinations.forEach((combination) => {
+    let valueString = Object.keys(product)
+      .map((key) => {
+        let categoryIndex = categories.findIndex(
+          (category) => category.name === key,
+        );
+        if (categoryIndex !== -1) {
+          return `"${combination[categoryIndex]}"`;
+        }
+        return `"${product[key]}"`;
+      })
+      .join(", ");
+
+    valuesToInsert.push(`(${valueString})`);
   });
 });
 
-// Einzelnes SQL-Statement erzeugen
-let sql = `INSERT INTO Produkte (Produktname, Preis, Lagerbestand, Hauptkategorie_ID, Schuhgrösse, Rollen_Durchmesser, Farbe_ID) VALUES ${values.join(", ")};`;
+const columnNames = Object.keys(products[0]).join(", ");
 
-// SQL-Statement in der Konsole ausgeben
-document.write(sql);
+const insertQuery = `INSERT INTO ${TABLE_NAME} (${columnNames}) VALUES 
+${valuesToInsert.join(", \n")};`;
+
+document.write(
+  "" +
+    valuesToInsert.length +
+    " Produkte wurden erstellt.</br>Kopieren Sie den folgenden Code in Adminer bei 'SQL Kommando':",
+);
+
+document.write("<pre>" + insertQuery + "</pre>");
