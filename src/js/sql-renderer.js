@@ -104,7 +104,10 @@ function renderHtmlTable(tableHeaders, tableData, nohtml = false) {
               href='${row.cells[index].data}'>Produkte ansehen</a>`,
           );
         } else if (val.includes("shopDetails")) {
-          return html(`<a href='${row.cells[index].data}'>Produkt Details</a>`);
+          return html(`<a  
+            title="Zur Produkt Detail Seite"
+            class="productDetailLink"  
+            href='${row.cells[index].data}'>Produkt Details ansehen</a>`);
         } else {
           return val;
         }

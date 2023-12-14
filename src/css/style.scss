@@ -160,9 +160,11 @@ textarea {
   text-decoration: none;
   display: flex;
 }
-.productImage:hover,
-.productDetailLink:hover {
+.productImage:hover {
   filter: brightness(0.8) hue-rotate(20deg);
+}
+.productDetailLink:hover {
+  font-weight: bold;
 }
 .loader {
   font-size: 10px;
