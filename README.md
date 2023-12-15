@@ -4,7 +4,7 @@
 - Query Manager Web App for writing queries and viewing data. 
 - Learn SQL without programming the backend database handler
 - Allows sending SQL Queries directly from a static HTML page. 
-- Create on-demand mySQL databases for students
+- Create on-demand mySQL databases for students 
 
 # Local Dev
 - npm install
