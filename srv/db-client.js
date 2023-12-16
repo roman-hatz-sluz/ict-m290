@@ -4,8 +4,7 @@ const dbConfig = require("./groups.json");
 if (process.env.APP_ENV !== "prod") {
   require("dotenv").config();
 }
-
-//const setAutoIncrement = "SET @@auto_increment_increment=1;";
+const setAutoIncrement = "SET @@auto_increment_increment=1;";
 
 const QUERIES = {
   Hauptkategorien: "SELECT * FROM Hauptkategorien; SELECT * FROM Kategorien;",
@@ -46,14 +45,16 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
       connection.connect();
     });
 
-    connection.query(sql, [parameters], (err, result) => {
+    connection.query(setAutoIncrement + sql, [parameters], (err, result) => {
       if (err) {
         try {
           connection.end();
         } catch (e) {
           reject(e);
         }
-
+        if (err.sql) {
+          err.sql = err.sql.replace(setAutoIncrement, "");
+        }
         reject(err);
       }
       connection.end();
