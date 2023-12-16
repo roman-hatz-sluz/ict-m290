@@ -115,7 +115,7 @@
     "ENV": "JAWSDB_PINK_URL"
   },
   "b3": {
-    "name": "Haircare",
+    "name": "Haircare (nicht mehr verwenden: Permission error)",
     "class": "MMA21-b",
     "ENV": "JAWSDB_PUCE_URL"
   },
@@ -140,7 +140,7 @@
     "ENV": "JAWSDB_TEAL_URL"
   },
   "b8": {
-    "name": "",
+    "name": "Haircare (B3)",
     "class": "MMA21-b",
     "ENV": "JAWSDB_URL"
   },
