@@ -11,7 +11,7 @@ app.use(
     secret: "xw   ef (sfefdsdf",
     saveUninitialized: true,
     resave: false,
-  })
+  }),
 );
 app.use(bodyParser.json());
 
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header(
       "Access-Control-Allow-Headers",
-      "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
+      "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json",
     );
 
     next();
@@ -102,7 +102,17 @@ app.get("/shopDetails", (request, response) => {
 
 app.post("/sql", (request, response) => {
   const data = request.body;
-  //console.log("/sql data", request.body)
+  // logging
+  if (data.sql && data.group) {
+    console.log(
+      `app.post("/sql") \n
+      group: "${data.group}" \n
+      sql: "${data.sql}" \n
+     `,
+    );
+  } else {
+    console.log("invalid params", data);
+  }
 
   if (data.group) {
     const pw = data.pw ? data.pw : "";
@@ -115,7 +125,7 @@ app.post("/sql", (request, response) => {
         response.end(JSON.stringify(res));
       })
       .catch((err) => {
-        console.log("error", err);
+        console.log("DBClient.execQuery: error", err);
         response.json({ error: err });
       });
   } else {
@@ -128,7 +138,7 @@ const server = app.listen(port, () => {
     "Listening on port %d",
     server.address().port,
     "ENV:",
-    app.get("env")
+    app.get("env"),
   );
 });
 
@@ -147,19 +157,19 @@ const getPageHtml = (request, name = "") => {
   html = fs.readFileSync(__dirname + "/public/src/" + name + ".html", "utf8");
   const head = fs.readFileSync(
     __dirname + "/public/src/incl_head.html",
-    "utf8"
+    "utf8",
   );
   const header = fs.readFileSync(
     __dirname + "/public/src/incl_header.html",
-    "utf8"
+    "utf8",
   );
   const footer = fs.readFileSync(
     __dirname + "/public/src/incl_footer.html",
-    "utf8"
+    "utf8",
   );
   const nav = fs.readFileSync(
     __dirname + "/public/src/incl_content-nav.html",
-    "utf8"
+    "utf8",
   );
 
   html = html.replace(/___HEAD___/g, head);
