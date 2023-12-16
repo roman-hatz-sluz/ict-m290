@@ -6,4 +6,7 @@ static/
 vendor/
 .env
 _secret/
+_backup/
+src/js/21.22/*
+src/21.22-m290.291/*
  
