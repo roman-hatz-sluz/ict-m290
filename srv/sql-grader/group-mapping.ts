@@ -1,6 +1,19 @@
-const GROUP_MAPPING = {
+import { GroupMapping } from "./models";
+
+const GROUP_MAPPING: GroupMapping = {
+  teacher: {
+    _TN_PRODUCTS: "produkte",
+    _AN_PRODUCTS_NAME: "Produktname",
+    _AN_PRODUCTS_IMAGE: "Bild_URL",
+    _AN_PRODUCTS_MAINCAT: "Hauptkategorie_ID",
+    _TN_MAINCATEGORIES: "hauptkategorien",
+    _AN_MAINCATEGORIES_IMAGE: "Bild_URL",
+    _AN_MAINCATEGORIES_ID: "Hauptkategorie_ID",
+    _AN_CATEGORY_1: "Schuhgrösse",
+    _AN_CATEGORY_2: "Farbe",
+    _AN_CATEGORY_3: "Rollen_Durchmesser",
+  },
   al1: {
-    TYPE: "Standard",
     _TN_PRODUCTS: "produkt",
     _AN_PRODUCTS_NAME: "name",
     _AN_PRODUCTS_IMAGE: "bild",
@@ -13,7 +26,6 @@ const GROUP_MAPPING = {
     _AN_CATEGORY_3: "material",
   },
   al2: {
-    TYPE: "Standard",
     _TN_PRODUCTS: "product",
     _AN_PRODUCTS_NAME: "Name",
     _AN_PRODUCTS_IMAGE: "Image_URL",
@@ -26,7 +38,6 @@ const GROUP_MAPPING = {
     _AN_CATEGORY_3: "Quantity_cl",
   },
   al3: {
-    TYPE: "Standard",
     _TN_PRODUCTS: "produkte",
     _AN_PRODUCTS_NAME: "name",
     _AN_PRODUCTS_IMAGE: "produkt_bild",
@@ -67,7 +78,7 @@ const GROUP_MAPPING = {
   cl1: {
     TYPE: "Standard",
     _TN_PRODUCTS: "produkt",
-    _AN_PRODUCTS_NAME: "namen",
+    _AN_PRODUCTS_NAME: "produktname",
     _AN_PRODUCTS_IMAGE: "bild",
     _AN_PRODUCTS_MAINCAT: "hauptkategorie_id",
     _TN_MAINCATEGORIES: "hauptkategorie",

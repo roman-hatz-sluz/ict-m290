@@ -20,3 +20,7 @@
 - npm run delete-all-db (deletes all databases without further confirmation)
 - npm run generate-public-json (generates access data for the ict-290 application, upload the file to the server)
 - npm run generate-private-json (caution: only use locally, generates access data for the ict-290 application including passwords. do not upload this file as clear text)
+
+## Further Information
+
+VueJs application is in the works.
