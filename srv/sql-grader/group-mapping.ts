@@ -39,15 +39,15 @@ const GROUP_MAPPING: GroupMapping = {
   },
   al3: {
     _TN_PRODUCTS: "produkte",
-    _AN_PRODUCTS_NAME: "name",
+    _AN_PRODUCTS_NAME: "Produktname",
     _AN_PRODUCTS_IMAGE: "produkt_bild",
     _AN_PRODUCTS_MAINCAT: "hauptkategorie_id",
     _TN_MAINCATEGORIES: "hauptkategorie",
     _AN_MAINCATEGORIES_IMAGE: "hauptkategorie_picture",
     _AN_MAINCATEGORIES_ID: "hauptkategorie_id",
-    _AN_CATEGORY_1: "saitenpaket",
-    _AN_CATEGORY_2: "neck",
-    _AN_CATEGORY_3: "farbe",
+    _AN_CATEGORY_1: "Saitenpaket",
+    _AN_CATEGORY_2: "Neck",
+    _AN_CATEGORY_3: "Farbe",
   },
   al4: {
     _TN_PRODUCTS: "produkte",
@@ -174,7 +174,7 @@ const GROUP_MAPPING: GroupMapping = {
     _AN_PRODUCTS_NAME: "name",
     _AN_PRODUCTS_IMAGE: "picture_url",
     _AN_PRODUCTS_MAINCAT: "main_category_id",
-    _AN_CATEGORY_1: "haircaire_type",
+    _AN_CATEGORY_1: "color",
     _AN_CATEGORY_2: "hairtype",
     _AN_CATEGORY_3: "quantity_ml",
     _AN_MAINCATEGORIES_IMAGE: "picture",
@@ -233,6 +233,7 @@ const GROUP_MAPPING: GroupMapping = {
     _AN_MAINCATEGORIES_IMAGE: "Bild",
     _AN_MAINCATEGORIES_ID: "Marke_id",
   },
+  /*
   DEFAULT: {
     TYPE: "Standard",
     _TN_PRODUCTS: "",
@@ -245,7 +246,7 @@ const GROUP_MAPPING: GroupMapping = {
     _AN_CATEGORY_3: "",
     _AN_MAINCATEGORIES_IMAGE: "",
     _AN_MAINCATEGORIES_ID: "",
-  },
+  },*/
 };
 module.exports = {
   GROUP_MAPPING,

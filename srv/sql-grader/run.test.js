@@ -5,10 +5,18 @@ const fs = require("fs");
 const mysql = require("mysql");
 const parseDbUrl = require("parse-database-url");
 
-const groupName = "b1";
-//const args = process.argv.slice(2);
-// process.argv[process.argv.indexOf("--") + 1];
+let groupName = "b2";
+const args = process.argv.slice(2);
+console.log(process.argv);
 
+const index = args.findIndex((arg) => arg.startsWith("--classname"));
+if (index !== -1 && args[index + 1]) {
+  groupName = args[index + 1];
+
+  console.log("Classname parameter:", groupName);
+} else {
+  console.error("invalid parameter --classname");
+}
 let analytics;
 
 const { GROUP_MAPPING } = require("./group-mapping.js");
@@ -23,6 +31,7 @@ const mappedQueries = SQL_QUERIES.map((q) => {
   return replaceKeys(GROUP_MAPPING[groupName], q.sql);
 });
 before(async function () {
+  this.timeout(5000);
   analytics = await getAnalytics();
 });
 

@@ -71,6 +71,15 @@ Ich sehe keinen Fortschritt bei Aufgabe 4.
 
 Ihr seid aktuell nicht gut dabei. Wie kann ich am besten helfen? Wo gibt es Probleme?
 
+b7:
+Rating: 2
+
+- Produktvariationen erstellt, gut!
+
+* Bilder fehlen noch
+* 12 Duplikate bei den Produktvariationen.
+  Challenge: Versucht rauszufinden, warum es Duplikate gab.
+
 b2:
 Rating 2
 
@@ -87,12 +96,31 @@ Rating 2
 8
 
 b5:
+Rating: 1
 
-- Productvariationen erstellt. Hat leider nicht ganz funktioniert.
-  Ich empfehle, dass ihr nochmals drüber geht und das wiederholen solltet.
+- Produktvariationen erstellt, hat leider nicht gut funktioniert
+- Bilder Hauptkategorien erstellt.
 
 * Die Bilderlinks sind noch nicht korrekt, es muss auf eine Bild Datei verlinkt werden. Siehe Aufgabe.
   => öffnen Sie ihren Link, dann Rechtsklick aufs Bild "Copy Image URL"
+
+* Ihr habt einen Fehler in den Produkte Daten.
+  "brand_id": ist über all 0.
+  Das ist falsch.
+
+* Produktvariationen erstellt. Hat leider nicht ganz funktioniert.
+  Ich empfehle, dass ihr nochmals drüber geht und das wiederholen solltet. Das Bestehende korrigieren würde auch gehen, die ganze Tabelle leeren und wiederholen geht vermutlich schneller.
+
+* Bilder Produkte fehlen noch
+
+b6:
+Rating: 2
+Saubere Umsetzung
+
+- Produktvariationen erstellt, gut!
+- Keine Duplikate, sehr gut.
+
+* Bilder fehlen noch
 
 b1:
 Rating: 2

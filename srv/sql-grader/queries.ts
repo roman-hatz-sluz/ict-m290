@@ -99,18 +99,19 @@ const SQL_QUERIES: Query[] = [
   },
   {
     descr: "Mindestens eine numerische Kategorie",
-    sql: ` SELECT   
+    sql: `SELECT   
     CASE 
       WHEN _AN_CATEGORY_1 REGEXP '^-?[0-9]+\\.?[0-9]*$' THEN 1
       WHEN _AN_CATEGORY_2 REGEXP '^-?[0-9]+\\.?[0-9]*$' THEN 1
       WHEN _AN_CATEGORY_3 REGEXP '^-?[0-9]+\\.?[0-9]*$' THEN 1
       ELSE 0
-    END AS "${countColumnName}"
+    END AS count
   FROM _TN_PRODUCTS
-  HAVING "${countColumnName}" = 1 
+  HAVING count = 1 
   LIMIT 1`,
     validate: (result: any) => {
-      return result ? true : false;
+      // @todo: does not work, always true; REGEXP looks at data i think, not data type name
+      return result.length > 0;
     },
     points: 0.5,
   },
@@ -122,7 +123,7 @@ const SQL_QUERIES: Query[] = [
     AND COLUMN_NAME = '_AN_PRODUCTS_IMAGE'
     AND IS_NULLABLE = 'YES';`,
     validate: (result: any) => {
-      return Number(result[0][countColumnName]) === 0;
+      return Number(result[0][countColumnName]) === 1;
     },
     points: 0.5,
   },

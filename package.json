@@ -81,7 +81,8 @@
     "generate-public-json": "node -e 'require(\"./srv/manageJawsdb\").generatePublicJson()'",
     "generate-private-json": "node -e 'require(\"./srv/manageJawsdb\").generatePrivateJson()'",
     "remove-passwords": "node -e 'require(\"./srv/removePasswords\").removePasswords()'",
-    "student-work-check": "npx tsc; npx mocha ./srv/sql-grader/run.test.js --reporter mochawesome"
+    "student-work-check": "npx tsc; npx mocha ./srv/sql-grader/run.test.js --reporter mochawesome --classname teacher",
+    "all-student-work-check": "npx tsc; node ./srv/sql-grader/all-student-work-check.js"
   },
   "author": "RH",
   "license": "ISC"
