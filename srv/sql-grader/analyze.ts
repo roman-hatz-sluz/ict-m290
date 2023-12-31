@@ -1,86 +1,63 @@
-import { Stats, AnalyticsRecord } from "./models";
+import { Stats } from "./models";
 
-function parseAnalytics(sqlResult: any) {
-  const analyticsData = convertAnalytics(sqlResult);
-  const analyticsStats = getStats(analyticsData);
-  return { data: analyticsData, stats: analyticsStats };
-}
+const parseAnalytics = (records: any[]): Stats => {
+  // information_schema.COLUMNS
+  const tablesResult = records[0] ?? [];
+  // information_schema.table_constraints
+  const constraintResults = records[1] ?? [];
 
-function getStats(records: AnalyticsRecord[]): Stats {
-  const distinctTables: Set<string> = new Set();
-  const distinctColumnTypes: Set<string> = new Set();
-  const attributesPerTable: Record<string, number> = {};
-  const primaryKeyEntries: Record<string, string> = {};
-  const foreignKeyEntries: Record<string, string> = {};
+  const primaryKeys: string[] = [];
+  const foreignKeys: string[] = [];
+  const uniqueKeys: string[] = [];
+  const checkKeys: string[] = [];
 
-  records.forEach((record: AnalyticsRecord) => {
-    const { table_name, COLUMN_TYPE, CONSTRAINT_TYPE } = record;
+  const tableNames = [
+    ...new Set<string>(tablesResult.map((row: any) => row.TABLE_NAME)),
+  ];
+  const columnNames: string[] = tablesResult.map((row: any) => {
+    return `${row.TABLE_NAME}.${row.COLUMN_NAME}`;
+  });
+  const columnTypes = [
+    ...new Set<string>(tablesResult.map((row: any) => row.COLUMN_TYPE)),
+  ];
 
-    // Count distinct table names
-    distinctTables.add(table_name);
+  const tablesWithAutoIncr = [
+    ...new Set<string>(
+      tablesResult.map((row: any) => {
+        if (row.AUTO_INCREMENT && row.TABLE_NAME) return row.TABLE_NAME;
+      }),
+    ),
+  ];
 
-    // Count entries per table name
-    attributesPerTable[table_name] = (attributesPerTable[table_name] || 0) + 1;
-
-    // Store one entry with PRIMARY KEY per table name
-    if (CONSTRAINT_TYPE === "PRIMARY KEY") {
-      primaryKeyEntries[table_name] = record.COLUMN_NAME;
+  constraintResults.forEach((row: any) => {
+    if (row.CONSTRAINT_TYPE === "PRIMARY KEY") {
+      primaryKeys.push(`${row.TABLE_NAME}.${row.CONSTRAINT_NAME}`);
+    } else if (row.CONSTRAINT_TYPE === "UNIQUE") {
+      uniqueKeys.push(`${row.TABLE_NAME}.${row.CONSTRAINT_NAME}`);
+    } else if (row.CONSTRAINT_TYPE === "FOREIGN KEY") {
+      foreignKeys.push(`${row.TABLE_NAME}.${row.CONSTRAINT_NAME}`);
+    } else if (row.CONSTRAINT_TYPE === "CHECK") {
+      checkKeys.push(`${row.TABLE_NAME}.${row.CONSTRAINT_NAME}`);
     }
-    if (CONSTRAINT_TYPE === "FOREIGN KEY") {
-      foreignKeyEntries[table_name] = record.COLUMN_NAME;
-    }
-    // Count distinct column types
-    distinctColumnTypes.add(COLUMN_TYPE);
   });
 
-  return {
-    distinctTables: Array.from(distinctTables),
-    numberOfTables: distinctTables.size || 0,
-    attributesPerTable,
-    primaryKeyEntries,
-    numberOfPrimaryKeys: Object.keys(primaryKeyEntries).length,
-    foreignKeyEntries,
-    numberOfForeignKeys: Object.keys(foreignKeyEntries).length,
-    listOfDistinctColumnTypes: Array.from(distinctColumnTypes),
+  const stats: Stats = {
+    tables: Array.from(tableNames).sort(),
+    columnNames: Array.from(columnNames).sort(),
+    columnTypes: columnTypes.sort(),
+    constraints: {
+      primaryKeys: primaryKeys.sort(),
+      autoIncrement: tablesWithAutoIncr.sort(),
+      foreignKey: foreignKeys.sort(),
+      unique: uniqueKeys.sort(),
+      check: checkKeys.sort(),
+      other: [],
+    },
   };
-}
-const convertAnalytics = (records: AnalyticsRecord[]) => {
-  /*
-  records.sort((a, b) => {
-    // First, sort by table_name
-   
-    const tableNameComparison = a.table_name.localeCompare(b.table_name);
-    if (tableNameComparison !== 0) {
-      return tableNameComparison;
-    }
 
-    // Then, sort by CONSTRAINT_TYPE if both are not null and different
-    if (
-      a.CONSTRAINT_TYPE &&
-      b.CONSTRAINT_TYPE &&
-      a.CONSTRAINT_TYPE !== b.CONSTRAINT_TYPE
-    ) {
-      return a.CONSTRAINT_TYPE.localeCompare(b.CONSTRAINT_TYPE);
-    }
-
-    // Lastly, sort by COLUMN_NAME
-    return a.COLUMN_NAME.localeCompare(b.COLUMN_NAME);
-  });
-*/
-  const processedRecords: any = [];
-  records.map((record: AnalyticsRecord) => {
-    const mappedRecord: any = {};
-    for (const key in record) {
-      const keyTyped = key as keyof AnalyticsRecord;
-      if (record[keyTyped] !== null && keyTyped !== "DATA_TYPE") {
-        mappedRecord[key] = record[keyTyped];
-      }
-    }
-    processedRecords.push(mappedRecord);
-  });
-
-  return processedRecords;
+  return stats;
 };
+
 module.exports = {
   parseAnalytics,
 };

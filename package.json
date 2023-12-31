@@ -34,6 +34,7 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-env": "^7.23.6",
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "@types/mysql": "^2.15.25",
     "autoprefixer": "^10.4.16",
     "babel-loader": "^9.1.3",
     "chai": "^4.3.10",
@@ -81,8 +82,9 @@
     "generate-public-json": "node -e 'require(\"./srv/manageJawsdb\").generatePublicJson()'",
     "generate-private-json": "node -e 'require(\"./srv/manageJawsdb\").generatePrivateJson()'",
     "remove-passwords": "node -e 'require(\"./srv/removePasswords\").removePasswords()'",
-    "student-work-check": "npx tsc; npx mocha ./srv/sql-grader/run.test.js --reporter mochawesome --classname teacher",
-    "all-student-work-check": "npx tsc; node ./srv/sql-grader/all-student-work-check.js"
+    "student-work-ts": "npx tsc --outDir ./srv/sql-grader/dist;",
+    "student-work-check": "npm run student-work-ts; npx mocha ./srv/sql-grader/dist/run.test.js --reporter mochawesome --classname teacher",
+    "all-student-work-check": "npm run student-work-ts; node ./srv/sql-grader/dist/all-student-work-check.js"
   },
   "author": "RH",
   "license": "ISC"

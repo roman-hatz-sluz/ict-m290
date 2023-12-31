@@ -32,6 +32,21 @@ export type GroupMapping = {
   };
 };
 export type Stats = {
+  tables: string[];
+  columnNames: string[];
+  columnTypes: string[];
+  constraints: {
+    primaryKeys: string[];
+    autoIncrement: string[];
+    foreignKey: string[];
+    unique: string[];
+    check: string[];
+    other?: string[];
+  };
+};
+
+/*
+export type Stats = {
   distinctTables: string[];
   numberOfTables: number;
   attributesPerTable: Record<string, number>;
@@ -41,3 +56,4 @@ export type Stats = {
   numberOfForeignKeys: number;
   listOfDistinctColumnTypes: string[];
 };
+*/

@@ -97,6 +97,20 @@ const SQL_QUERIES: Query[] = [
     },
     points: 0.25,
   },
+
+  {
+    descr: "Bild bei Produkte: Wert NULL ist erlaubt",
+    sql: `SELECT COUNT(COLUMN_NAME) AS "${countColumnName}"
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = '_TN_PRODUCTS'
+    AND COLUMN_NAME = '_AN_PRODUCTS_IMAGE'
+    AND IS_NULLABLE = 'YES';`,
+    validate: (result: any) => {
+      const isNullable = result[0][countColumnName] === 1 ? true : false;
+      return isNullable;
+    },
+    points: 0.5,
+  },
   {
     descr: "Mindestens eine numerische Kategorie",
     sql: `SELECT   
@@ -115,31 +129,6 @@ const SQL_QUERIES: Query[] = [
     },
     points: 0.5,
   },
-  {
-    descr: "Bild bei Produkte: Wert NULL ist erlaubt",
-    sql: `SELECT COUNT(COLUMN_NAME) AS "${countColumnName}"
-    FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_NAME = '_TN_PRODUCTS'
-    AND COLUMN_NAME = '_AN_PRODUCTS_IMAGE'
-    AND IS_NULLABLE = 'YES';`,
-    validate: (result: any) => {
-      return Number(result[0][countColumnName]) === 1;
-    },
-    points: 0.5,
-  },
-  // Setzen Sie UNIQUE für Email. Email muss für jeden Kunden eindeutig sein. Fügen Sie alle Kunden hinzu.
-  // CHECK Constraint
-  /*
-  {
-    descr: "Mindestens   ",
-    sql: `SELECT COUNT(*) AS "${countColumnName}" FROM _TN_MAINCATEGORIES`,
-    validate: (result: any) => {
-      return result[0][countColumnName] > 2;
-    },
-    points: 0.5,
-  },
-
-  */
 ];
 
 const replaceKeys = (mapping: any, query: any) => {
@@ -148,31 +137,31 @@ const replaceKeys = (mapping: any, query: any) => {
   }
   return query;
 };
+
+// table_name	COLUMN_NAME	DATA_TYPE	COLUMN_TYPE	CONSTRAINT_TYPE	REFERENCED_TABLE_NAME	REFERENCED_COLUMN_NAME	CHECK_CLAUSE	auto_increment	unique_constraint
+const EXCLUDE_SCHMEMA = "performance_schema";
 const ANALYTICS_QUERY = `
-SET SESSION group_concat_max_len = 1000000;
-SET @sql = NULL;
+SELECT
+	t.TABLE_NAME,
+	c.COLUMN_NAME,
+	c.COLUMN_TYPE,
+	t.AUTO_INCREMENT
+FROM
+	information_schema.TABLES t
+	JOIN information_schema.COLUMNS c ON t.TABLE_SCHEMA = c.TABLE_SCHEMA
+		AND t.TABLE_NAME = c.TABLE_NAME
+WHERE
+	t.TABLE_SCHEMA != 'information_schema'
+ORDER BY
+	t.TABLE_NAME,
+	c.COLUMN_NAME;
 
-SELECT GROUP_CONCAT(
-           CONCAT(
-             'SELECT "', 
-             t.table_name, 
-             '" AS table_name, c.column_name, c.data_type, c.column_type, ',
-             'tc.constraint_type, kcu.referenced_table_name, kcu.referenced_column_name ',
-             'FROM information_schema.columns c ',
-             'LEFT JOIN information_schema.key_column_usage kcu ON c.table_name = kcu.table_name AND c.column_name = kcu.column_name AND c.table_schema = kcu.table_schema ',
-             'LEFT JOIN information_schema.table_constraints tc ON kcu.constraint_name = tc.constraint_name AND kcu.table_schema = tc.table_schema AND kcu.table_name = tc.table_name ',
-             'WHERE c.table_schema = "', t.table_schema, '" AND c.table_name = "', t.table_name  , ' "'
-           ) 
-           SEPARATOR ' UNION ALL '
-       )
-INTO @sql
-FROM information_schema.tables t
-WHERE t.table_schema NOT IN ('information_schema', 'performance_schema', 'mysql', 'sys')
-ORDER BY t.table_name ;
-
-PREPARE stmt FROM @sql;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
+SELECT
+  *
+FROM
+  information_schema.table_constraints
+WHERE
+  CONSTRAINT_SCHEMA != "${EXCLUDE_SCHMEMA}";
 `;
 module.exports = {
   SQL_QUERIES,

@@ -5,7 +5,7 @@ const { execSync } = require("child_process");
 
 const { GROUP_MAPPING } = require("./group-mapping.js");
 const commandTemplate =
-  "npx mocha ./srv/sql-grader/run.test.js --reporter mochawesome --classname";
+  "npx mocha ./srv/sql-grader/dist/run.test.js --reporter mochawesome --classname";
 const commandTemplate2 =
   "cp ./mochawesome-report/mochawesome.html ./mochawesome-report/";
 
