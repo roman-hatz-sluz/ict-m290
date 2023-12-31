@@ -34,8 +34,8 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
     pdf_name = f"{current_dir}/output/_report_{row[0].value}.pdf"
     
     pdf = FPDF()
-    pdf.add_font('DejaVu', '', f"{current_dir}/DejaVuSans.ttf", uni=True)
-    pdf.add_font('DejaVu', 'B',f"{current_dir}/DejaVuSans-Bold.ttf", uni=True)
+    pdf.add_font('DejaVu', '', f"{current_dir}/fonts/DejaVuSans.ttf", uni=True)
+    pdf.add_font('DejaVu', 'B',f"{current_dir}/fonts/DejaVuSans-Bold.ttf", uni=True)
     pdf.add_page()
      
     pdf.set_font("DejaVu", size=12)

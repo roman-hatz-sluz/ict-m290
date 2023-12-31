@@ -12,3 +12,5 @@ src/21.22-m290.291/*
 mochawesome-report/
 _feedback_23_12/reports
 srv/sql-grader/dist 
+DejaVuSans*.pkl
+excel-to-pdf-reporter/output/*
