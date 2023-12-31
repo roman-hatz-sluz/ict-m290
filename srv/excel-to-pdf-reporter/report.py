@@ -1,15 +1,18 @@
 import openpyxl
 import re
 from fpdf import FPDF
-
-excel_file = "M290.23-24.PA-Noten.xlsx"  # Update the path to your file
+import argparse
+import os
+parser = argparse.ArgumentParser(description='Process Excel file.')
+parser.add_argument('--excel_file_path', help='Path to the Excel file')
+args = parser.parse_args()
+excel_file = args.excel_file_path
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 workbook = openpyxl.load_workbook(excel_file, data_only=True)
 sheet = workbook.active
 headers = sheet[1]
 maxPoints = sheet[2]
-
- 
 
 def normalize(comment_text):
     # Regex pattern to identify the standard disclaimer in threaded comments
@@ -25,25 +28,26 @@ def normalize(comment_text):
 
 # Iterate over each row in the worksheet, starting from the third row
 for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
+    if row[0].value is None:
+        continue
     # Initialize a new PDF document
-    pdf_name = f"./reports/_report_{row[0].value}.pdf"
+    pdf_name = f"{current_dir}/output/_report_{row[0].value}.pdf"
+    
     pdf = FPDF()
-    pdf.add_font('DejaVu', '', 'DejaVuSans.ttf', uni=True)
-    pdf.add_font('DejaVu', 'B', 'DejaVuSans-Bold.ttf', uni=True)
+    pdf.add_font('DejaVu', '', f"{current_dir}/DejaVuSans.ttf", uni=True)
+    pdf.add_font('DejaVu', 'B',f"{current_dir}/DejaVuSans-Bold.ttf", uni=True)
     pdf.add_page()
      
     pdf.set_font("DejaVu", size=12)
     pdf.multi_cell(0, 8, f"Bewertung Projektarbeit - SJ 23/24 / Modul 290 - Gruppe: {row[0].value}", align='L')
 
-    pdf.set_font("DejaVu", size=8)
+    pdf.set_font("DejaVu", size=7)
     entry_text = """Das Bewertungsformat ist wie folgt aufgebaut: 
     Jeder Abschnitt der Bewertung ist fett gedruckt.
     Alle Abschnitte zusammen ergeben die Gesamtpunktzahl.
     Unter dem Abschnitt sind die entsprechenden Projektaufgaben aufgeführt. 
-    Die Zahl vor der Klammer ist die erreichte Punktzahl. 
-    Die maximal erreichbare Punktzahl ist in Klammern angegeben.
     """
-    pdf.multi_cell(0, 8, entry_text, align='L')
+    pdf.multi_cell(0, 4, entry_text, align='L')
    
     counter=0
     for cell in row:
@@ -56,15 +60,16 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
         header = normalize(str(header))  
         max_points = maxPoints[counter-1].value 
         
-        entry = f"{header}: {cell_value} ({max_points})"
+        entry = f"{header}: {cell_value} von {max_points}"
         if re.search('[a-zA-Z]', header):
             pdf.ln(4)
-            pdf.set_font("DejaVu", 'B', 10)   
+            pdf.set_font("DejaVu", 'B', 10) 
+            entry = f"{header}: {cell_value} von {max_points}"  
         else:
-            entry = f"Aufgabe {entry}"
-            pdf.set_font("DejaVu", '', 10)   
+            pdf.set_font("DejaVu", '', 10)
+            entry = f"Aufgabe {header}: {cell_value} ({max_points})"  
         pdf.multi_cell(0, 8, entry, align='L')
-
+        
         # Check for comments and append if present
         if cell.comment:
             comment_text = normalize(cell.comment.text.strip())
@@ -78,5 +83,6 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
                 
             pdf.set_font("DejaVu", size=10)  # Reset font size to normal
        
-    # Save the PDF file  
+    # Save the PDF file   
     pdf.output(pdf_name)
+    print(f"PDF file created: {pdf_name}")

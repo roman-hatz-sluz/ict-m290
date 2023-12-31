@@ -84,7 +84,8 @@
     "remove-passwords": "node -e 'require(\"./srv/removePasswords\").removePasswords()'",
     "student-work-ts": "npx tsc --outDir ./srv/sql-grader/dist;",
     "student-work-check": "npm run student-work-ts; npx mocha ./srv/sql-grader/dist/run.test.js --reporter mochawesome --classname teacher",
-    "all-student-work-check": "npm run student-work-ts; node ./srv/sql-grader/dist/all-student-work-check.js"
+    "all-student-work-check": "npm run student-work-ts; node ./srv/sql-grader/dist/all-student-work-check.js",
+    "generate-pdfs": "python3 ./srv/excel-to-pdf-reporter/report.py --excel_file_path='./srv/excel-to-pdf-reporter/M290.23-24.PA-Noten.xlsx' "
   },
   "author": "RH",
   "license": "ISC"

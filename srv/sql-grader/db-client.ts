@@ -76,7 +76,7 @@ const killAllPools = async (): Promise<void> => {
   try {
     // Wait for all pools to close
     await Promise.all(poolClosePromises);
-    console.log("All connection pools closed successfully");
+    //console.log("All connection pools closed successfully");
   } catch (error) {
     console.error("Error occurred while closing pools", error);
     throw error;

@@ -26,7 +26,7 @@ const mappedQueries = SQL_QUERIES.map((q: Query) => {
   return replaceKeys(GROUP_MAPPING[groupName], q.sql);
 });
 before(async function (this: any) {
-  // this.timeout(5000);
+  this.timeout(5000);
   analytics = await getAnalytics();
 });
 after(async function (this: any) {
@@ -140,7 +140,6 @@ describe(`Gruppe ${groupName}`, () => {
       let result = false;
       if (query.validate) {
         result = query.validate(results);
-        console.log(query.descr, result);
       }
       expect(result).to.be.true;
     });
