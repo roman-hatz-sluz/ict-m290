@@ -10,15 +10,13 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] > 2;
     },
-    points: 0.5,
   },
   {
     descr: "Mindestens 3 Bilder bei Hauptkategorien",
-    sql: `SELECT COUNT(DISTINCT _AN_MAINCATEGORIES_IMAGE) AS "${countColumnName}" FROM _TN_MAINCATEGORIES`,
+    sql: `SELECT DISTINCT(_AN_MAINCATEGORIES_IMAGE) AS image_url FROM _TN_MAINCATEGORIES`,
     validate: (result: any) => {
-      return result[0][countColumnName] > 2;
+      return result.length > 2;
     },
-    points: 0.5,
   },
   {
     descr: "Keine Produkte ohne Hauptkategorie",
@@ -29,7 +27,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] === 0;
     },
-    points: 0.5,
   },
   {
     descr: "Mindestens 10 Produkte im Grundsortiment",
@@ -37,7 +34,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] > 9;
     },
-    points: 0.5,
   },
   {
     descr: "Mindestens 1000 Produkte",
@@ -45,7 +41,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] > 999;
     },
-    points: 1,
   },
   {
     descr: "Mindestens 10 Bilder bei Produkte",
@@ -53,7 +48,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] > 9;
     },
-    points: 0.5,
   },
   {
     descr: "Keine Duplikate bei Produktvariationen",
@@ -67,7 +61,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] === 0;
     },
-    points: 0.5,
   },
   {
     descr: "Nicht mehr als 10 Duplikate bei Produktvariationen",
@@ -81,7 +74,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] < 10;
     },
-    points: 0.25,
   },
   {
     descr: "Nicht mehr als 100 Duplikate bei Produktvariationen",
@@ -95,7 +87,6 @@ const SQL_QUERIES: Query[] = [
     validate: (result: any) => {
       return result[0][countColumnName] < 100;
     },
-    points: 0.25,
   },
 
   {
@@ -109,7 +100,6 @@ const SQL_QUERIES: Query[] = [
       const isNullable = result[0][countColumnName] === 1 ? true : false;
       return isNullable;
     },
-    points: 0.5,
   },
   {
     descr: "Mindestens eine numerische Kategorie",
@@ -127,7 +117,6 @@ const SQL_QUERIES: Query[] = [
       // @todo: does not work, always true; REGEXP looks at data i think, not data type name
       return result.length > 0;
     },
-    points: 0.5,
   },
 ];
 

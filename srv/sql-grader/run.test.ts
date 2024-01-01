@@ -5,12 +5,12 @@ const fs = require("fs");
 import { Query, Stats } from "./models";
 import { execQuery, killAllPools } from "./db-client";
 const { GROUP_MAPPING } = require("./group-mapping");
+const { generateHtmlFile } = require("./image-htmlizer.js");
 const { SQL_QUERIES, ANALYTICS_QUERY, replaceKeys } = require("./queries");
 const { parseAnalytics } = require("./analyze.js");
 
 let groupName = "teacher"; // default group
 const args = process.argv.slice(2);
-
 const index = args.findIndex((arg) => arg.startsWith("--classname"));
 if (index !== -1 && args[index + 1]) {
   groupName = args[index + 1];
@@ -18,7 +18,10 @@ if (index !== -1 && args[index + 1]) {
 } else {
   console.error("invalid parameter --classname");
 }
+
 let analytics: Stats;
+const sqlQueryResults: any = [];
+
 const jsonString = fs.readFileSync("./_secret/secret-env.json", "utf8");
 const jsonData = JSON.parse(jsonString);
 const sqlConnectionString = jsonData[groupName].sqlstring;
@@ -31,9 +34,25 @@ before(async function (this: any) {
 });
 after(async function (this: any) {
   await killAllPools();
+  const images: string[] = sqlQueryResults
+    .flat()
+    .filter((obj: any) => obj.image_url !== undefined)
+    .map((obj: any) => obj.image_url);
+  generateHtmlFile(
+    groupName,
+    images,
+    `./_secret/grades/${groupName}-images.html`,
+  );
 });
 
 describe(`Gruppe ${groupName}`, () => {
+  it(`Analytics`, async function (this: any) {
+    addContext(this, {
+      title: "Tabellen",
+      value: analytics,
+    });
+    expect(1).to.equal(1);
+  });
   it(`Mindestens 2 Tabellen`, async function (this: any) {
     addContext(this, {
       title: "Tabellen",
@@ -133,6 +152,7 @@ describe(`Gruppe ${groupName}`, () => {
   SQL_QUERIES.forEach(function (query: Query, i: number) {
     it(`${query.descr}`, async function (this: any) {
       const results = await execQuery(sqlConnectionString, mappedQueries[i]);
+      sqlQueryResults.push(results);
       addContext(this, {
         title: "Actual",
         value: results,
@@ -141,6 +161,7 @@ describe(`Gruppe ${groupName}`, () => {
       if (query.validate) {
         result = query.validate(results);
       }
+
       expect(result).to.be.true;
     });
   });

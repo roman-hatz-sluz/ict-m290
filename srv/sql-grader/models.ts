@@ -11,7 +11,6 @@ export type Query = {
   descr: string;
   sql: string;
   validate?: Function;
-  points?: number;
 };
 export type GroupMapping = {
   [key: string]: {
