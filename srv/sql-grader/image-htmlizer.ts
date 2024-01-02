@@ -33,7 +33,6 @@ function generateHtmlFile(
       console.error("Error writing file:", err);
       return;
     }
-    console.log(`HTML file written successfully to ${filePath}`);
   });
 }
 module.exports = {

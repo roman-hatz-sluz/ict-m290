@@ -47,11 +47,11 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
 
     pdf.set_font("DejaVu", size=12)
     pdf.multi_cell(
-        0, 8, f"Bewertung Projektarbeit - Gruppe {row[0].value} - 01.2024", align="L"
+        0, 8, f"Bewertung Projektarbeit  - Gruppe {row[0].value} - 01.2024", align="L"
     )
 
     pdf.set_font("DejaVu", size=10)
-    pdf.multi_cell(0, 8, f"Modul 290 - BBZW Sursee - Lehrperson R. Hatz", align="L")
+    pdf.multi_cell(0, 8, f"Modul 290 - Datenbanken abfragen und verändern - BBZW Sursee - Lehrperson R. Hatz", align="L")
     counter = 0
     for cell in row:
         counter = counter + 1
@@ -67,13 +67,15 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
         if header == "":
             continue
         entry = f"{header}: {cell_value} von {max_points}"
-        if re.search("[a-zA-Z]", header):
+        if re.search("^[a-zA-Z]", header):
             pdf.ln(4)
             pdf.set_font("DejaVu", "B", 10)
             entry = f"{header}: {cell_value} von {max_points}"
         else:
             pdf.set_font("DejaVu", "", 10)
             entry = f"Aufgabe {header}: {cell_value} ({max_points})"
+        if header == "Total":
+            pdf.set_font("DejaVu", "B", 12)
         if header == "Note":
             pdf.set_font("DejaVu", "B", 12)
             entry = f"{header}: {round(float(cell_value), 3)}"
@@ -97,11 +99,13 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
             pdf.set_font("DejaVu", size=10)  # Reset font size to normal
 
     pdf.ln(4)
+    pdf.ln(4)
     pdf.set_font("DejaVu", size=8)
-    entry_text = """Das Bewertungsformat ist wie folgt aufgebaut: 
-    Jeder Abschnitt der Bewertung ist fett gedruckt.
-    Alle Abschnitte zusammen ergeben die Gesamtpunktzahl.
-    Unter dem Abschnitt sind die entsprechenden Projektaufgaben aufgeführt. 
+    entry_text = """Hinweise:  
+    - Beilagen: report.html für Aufgabe 3.2, images.html für Aufgabe 4.1
+    - Alle Abschnitte (fett gedruckt) zusammen ergeben die Gesamtpunktzahl.
+    - Aufgabe 2.3: je 1.5 Punkte für eine Erweiterung.
+    - Aufgabe 5.3: 2 Punkte für Detail Page, je 1 Punkt für die Challenges.
     """
     pdf.multi_cell(0, 4, entry_text, align="L")
     # Save the PDF file

@@ -17,7 +17,6 @@ Object.entries(GROUP_MAPPING).forEach(([key]) => {
     // console.error(`Error executing command for key "${key}":`, error);
   }
   try {
-    console.log("command2", command2);
     execSync(command2, { stdio: "inherit" });
   } catch (error) {}
 });

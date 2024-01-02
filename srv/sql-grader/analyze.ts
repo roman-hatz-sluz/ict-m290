@@ -21,13 +21,13 @@ const parseAnalytics = (records: any[]): Stats => {
     ...new Set<string>(tablesResult.map((row: any) => row.COLUMN_TYPE)),
   ];
 
-  const tablesWithAutoIncr = [
-    ...new Set<string>(
-      tablesResult.map((row: any) => {
-        if (row.AUTO_INCREMENT && row.TABLE_NAME) return row.TABLE_NAME;
-      }),
-    ),
-  ];
+  const tablesWithAutoIncr: Set<string> = new Set();
+
+  tablesResult.forEach((row: any) => {
+    if (row.AUTO_INCREMENT && row.TABLE_NAME) {
+      tablesWithAutoIncr.add(row.TABLE_NAME);
+    }
+  });
 
   constraintResults.forEach((row: any) => {
     if (row.CONSTRAINT_TYPE === "PRIMARY KEY") {
@@ -47,7 +47,7 @@ const parseAnalytics = (records: any[]): Stats => {
     columnTypes: columnTypes.sort(),
     constraints: {
       primaryKeys: primaryKeys.sort(),
-      autoIncrement: tablesWithAutoIncr.sort(),
+      autoIncrement: Array.from(tablesWithAutoIncr).sort(),
       foreignKey: foreignKeys.sort(),
       unique: uniqueKeys.sort(),
       check: checkKeys.sort(),

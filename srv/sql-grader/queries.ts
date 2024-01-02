@@ -44,9 +44,9 @@ const SQL_QUERIES: Query[] = [
   },
   {
     descr: "Mindestens 10 Bilder bei Produkte",
-    sql: `SELECT COUNT(DISTINCT _AN_PRODUCTS_IMAGE) AS "${countColumnName}" FROM _TN_PRODUCTS`,
+    sql: `SELECT DISTINCT(_AN_PRODUCTS_IMAGE) AS image_url FROM _TN_PRODUCTS`,
     validate: (result: any) => {
-      return result[0][countColumnName] > 9;
+      return result.length > 9;
     },
   },
   {
