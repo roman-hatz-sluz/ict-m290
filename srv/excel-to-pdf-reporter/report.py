@@ -1,13 +1,10 @@
 import openpyxl
 import re
 from fpdf import FPDF  
-import argparse
 import os
-from report_utils import getGradeText
+from report_utils import getGradeText, normalize, parse_arguments
 
-parser = argparse.ArgumentParser(description="Process Excel file.")
-parser.add_argument("--excel_file_path", help="Path to the Excel file")
-args = parser.parse_args()
+args = parse_arguments()
 excel_file = args.excel_file_path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -16,20 +13,6 @@ sheet = workbook.active
 headers = sheet[1]
 maxPoints = sheet[2]
 
-
-def normalize(comment_text):
-    # Regex pattern to identify the standard disclaimer in threaded comments
-    disclaimer_pattern = (
-        r"\[Threaded comment\][\s\S]*?https://go\.microsoft\.com/fwlink/\?linkid=870924"
-    )
-    # Remove the standard disclaimer
-    stripped_text = re.sub(disclaimer_pattern, "", comment_text)
-    # Remove "Comment: " from the string
-    stripped_text = stripped_text.replace("Comment:", "")
-    stripped_text = stripped_text.replace("None", "")
-    # Remove extra whitespaces
-    stripped_text = re.sub(r"\s+", " ", stripped_text).strip()
-    return stripped_text
 
 
 # Iterate over each row in the worksheet, starting from the third row
@@ -67,6 +50,9 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
         if header == "":
             continue
         entry = f"{header}: {cell_value} von {max_points}"
+        if float(cell_value) > float(max_points)   :
+            print(f"Error: Cell value {cell_value} is above max points {max_points} (Gruppe: {row[0].value}, header: {header})")
+            exit(1)
         if re.search("^[a-zA-Z]", header):
             pdf.ln(4)
             pdf.set_font("DejaVu", "B", 10)
