@@ -7,34 +7,57 @@ from report_utils import getGradeText, normalize, parse_arguments
 args = parse_arguments()
 excel_file = args.excel_file_path
 current_dir = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = "./_secret/grades"
 
 workbook = openpyxl.load_workbook(excel_file, data_only=True)
-sheet = workbook.active
+sheet = workbook.worksheets[0]
 headers = sheet[1]
 maxPoints = sheet[2]
 
 
+def load_worksheet(excel_file_path):
+    workbook = openpyxl.load_workbook(excel_file_path, data_only=True)
+    return workbook.active, workbook.active[1], workbook.active[2]
+
+def initialize_pdf():
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.add_font("DejaVu", "", f"{current_dir}/fonts/DejaVuSans.ttf", uni=True)
+    pdf.add_font("DejaVu", "B", f"{current_dir}/fonts/DejaVuSans-Bold.ttf", uni=True)
+    return pdf
+
+def add_header_to_pdf(pdf, group_number):
+    pdf.set_font("DejaVu", size=12)
+    pdf.multi_cell(0, 8, f"Bewertung Projektarbeit - Gruppe {group_number} - 01.2024", align="L")
+    pdf.set_font("DejaVu", size=10)
+    pdf.multi_cell(0, 8, "Modul 290 - Datenbanken abfragen und verändern - BBZW Sursee - Lehrperson R. Hatz", align="L")
+
+def add_footer_to_pdf(pdf):
+    pdf.ln(4)
+    pdf.ln(4)
+    pdf.set_font("DejaVu", size=8)
+    entry_text = """Hinweise:  
+    - Beilagen: report.html für Aufgabe 3.2, images.html für Aufgabe 4.1
+    - Alle Abschnitte (fett gedruckt) zusammen ergeben die Gesamtpunktzahl.
+    - Aufgabe 2.3: je 1.5 Punkte für 1 Erweiterung.
+    - Aufgabe 5.3: 2 Punkte für Detail Page, je 1 Punkt für die Challenges.
+    - Allgemeines: Abgabedokument (Inhaltsverzeichnis, Design), Zwischenabgaben, Termine 
+    """
+    pdf.multi_cell(0, 4, entry_text, align="L")
+
+def save_pdf(pdf, group_number):
+    pdf_name = f"{OUTPUT_DIR}/{group_number}-report.pdf"
+    pdf.output(pdf_name)
+    print(f"PDF file created: {pdf_name}")
 
 # Iterate over each row in the worksheet, starting from the third row
 for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
     if row[0].value is None:
         continue
     # Initialize a new PDF document
-    pdf_name = f"./_secret/grades/{row[0].value}-report.pdf"
-
-    pdf = FPDF()
-    pdf.add_font("DejaVu", "", f"{current_dir}/fonts/DejaVuSans.ttf", uni=True)
-    pdf.add_font("DejaVu", "B", f"{current_dir}/fonts/DejaVuSans-Bold.ttf", uni=True)
+    pdf = initialize_pdf()
+    add_header_to_pdf(pdf, row[0].value)
    
-    pdf.add_page()
-
-    pdf.set_font("DejaVu", size=12)
-    pdf.multi_cell(
-        0, 8, f"Bewertung Projektarbeit  - Gruppe {row[0].value} - 01.2024", align="L"
-    )
-
-    pdf.set_font("DejaVu", size=10)
-    pdf.multi_cell(0, 8, f"Modul 290 - Datenbanken abfragen und verändern - BBZW Sursee - Lehrperson R. Hatz", align="L")
     counter = 0
     for cell in row:
         counter = counter + 1
@@ -84,17 +107,6 @@ for row_index, row in enumerate(sheet.iter_rows(min_row=3), start=2):
 
             pdf.set_font("DejaVu", size=10)  # Reset font size to normal
 
-    pdf.ln(4)
-    pdf.ln(4)
-    pdf.set_font("DejaVu", size=8)
-    entry_text = """Hinweise:  
-    - Beilagen: report.html für Aufgabe 3.2, images.html für Aufgabe 4.1
-    - Alle Abschnitte (fett gedruckt) zusammen ergeben die Gesamtpunktzahl.
-    - Aufgabe 2.3: je 1.5 Punkte für eine Erweiterung.
-    - Aufgabe 5.3: 2 Punkte für Detail Page, je 1 Punkt für die Challenges.
-    """
-    pdf.multi_cell(0, 4, entry_text, align="L")
-    # Save the PDF file
-    pdf.output(pdf_name)
+    add_footer_to_pdf(pdf)
    
-    print(f"PDF file created: {pdf_name}")
+    save_pdf(pdf,row[0].value)
