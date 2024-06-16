@@ -31,6 +31,9 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
         reject("invalid password");
       }
     }
+    if (!isValid) {
+      return false;
+    }
 
     const connection = mysql.createConnection(parsedConfig);
     connection.connect();

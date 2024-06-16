@@ -1,26 +1,35 @@
-# What is it
+# M291-2023
 
-- Headless server for teaching Web Frontend Application Development
-- Database Handler in NodeJS/Express
-- Query Manager Web App for writing queries and viewing data.
-- Learn SQL without programming the backend database handler
-- Allows sending SQL Queries directly from a static HTML page.
-- Create on-demand mySQL databases for students and teachers
+## Regeln für eure GitHub Repositories
 
-# Local Dev
+- Achten Sie auf eine **logische, verständliche Ordnerstruktur**. Verwenden Sie die Vorgaben korrekt:
 
-- npm install
-- npm run start
-- npm run dev
+  - HTML Dateien ins Haupttverzeichnis
+  - CSS Dateien in den Ordner "css"
+  - JS Dateien in den Ordner "js"
+  - Der Dateiname entspricht immer dem Namen der jeweiligen Web Page, zu der die Datei gehört. Ausnahme "common.css": CSS Code, der für alle Web Pages gleich ist
+  - Bilder im Ordner "images". Für Bilder gibt es keine Vorgaben beim Dateinamen.
 
-# DB Commands
+- **Kein Inline CSS oder Inline JS**:
+  JavaScript Code muss in ".js" Dateien sein. CSS Code muss in ".css" Dateien sein.
+- **Keine Code Duplikate**:
+  In HTML Dateien darf es vorkommen, dass HTML Code mehrfach vorkommt (zB. derselbe HTML Code für Header und Footer).
+  Derselbe CSS und JS Code darf jedoch nie mehrfach vorkommen, weder in derselben Datei noch über alle Dateien.
+- **Nutzung von externen Quellen**
+  Die Nutzung von externen Quellen ist erlaubt. **Trennen** Sie eigenen Code und kopierten Code möglichst **in separaten Dateien**.
+  Alle externen Quellen müssen mit einem Link dokumentiert werden. Der Link muss den kopierten Code enthalten. Das Unterrichtsmaterial gilt nicht als externe Quelle und muss nicht dokumentiert werden.  
+  Für Code aus Sprachgeneratoren/LLMs (ChatGPT) gelten für die Dokumentation andere Regeln (Screenshots statt Links), siehe Merkblatt.
 
-- npm run list-dbs
-- npm run create-30-dbs (takes a while)
-- npm run delete-all-db (deletes all databases without further confirmation)
-- npm run generate-public-json (generates access data for the ict-290 application, upload the file to the server)
-- npm run generate-private-json (caution: only use locally, generates access data for the ict-290 application including passwords. do not upload this file as clear text)
+Achten Sie auf eine logische und nachvollziehbare Ordnerstruktur. Verwenden Sie die Standardeinstellungen korrekt:
+HTML-Dateien in das Hauptverzeichnis
+CSS-Dateien in den Ordner "css
+JS-Dateien in den Ordner "js
+Der Dateiname entspricht immer dem Namen der Webseite, zu der die Datei gehört. Ausnahme "common.css": CSS-Code, der für alle Webpages gleich ist.
+Bilder im Ordner "images Für Bilder gibt es keine Vorgabe für den Dateinamen.
 
-## Further Information
+    Kein Inline CSS oder Inline JS: JavaScript Code muss in ".js" Dateien stehen. CSS-Code muss in ".css"-Dateien stehen.
 
-VueJs application is in the works.
+    Keine Code-Duplikate: In HTML-Dateien darf HTML-Code mehrfach vorkommen (z.B. derselbe HTML-Code für Header und Footer). Derselbe CSS- und JS-Code darf jedoch nicht mehrfach vorkommen, weder in derselben Datei noch über alle Dateien hinweg.
+
+    Verwendung externer Quellen Die Verwendung externer Quellen ist erlaubt. Wenn möglich, trennen Sie eigenen Code und kopierten Code in separaten Dateien. Alle externen Quellen müssen durch einen Link dokumentiert werden. Dieser Link muss den kopierten Code enthalten. Lehrmaterial gilt nicht als externe Quelle und muss nicht dokumentiert werden.
+    Für Code aus Sprachgeneratoren/LLMs (ChatGPT) gelten andere Regeln für die Dokumentation (Screenshots statt Links), siehe Merkblatt.
