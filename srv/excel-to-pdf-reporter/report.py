@@ -36,7 +36,7 @@ def add_footer_to_pdf(pdf):
     pdf.ln(4)
     pdf.ln(4)
     pdf.set_font("DejaVu", size=8)
-    entry_text = """Hinweise: 
+    entry_text = """Hinweise:  
     - Beilagen: report.html für Aufgabe 3.2, images.html für Aufgabe 4.1
     - Alle Abschnitte (fett gedruckt) zusammen ergeben die Gesamtpunktzahl.
     - Aufgabe 2.3: je 1.5 Punkte für 1 Erweiterung.
