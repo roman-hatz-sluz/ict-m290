@@ -10,7 +10,7 @@ const QUERIES = {
   Hauptkategorien: "SELECT * FROM Hauptkategorien; SELECT * FROM Kategorien;",
 };
 
-const execQuery = (group, pw, sql = "") => {
+const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
   const parameters = [];
   //console.log("execQuery", "group", group, "sql", sql, "pw", pw, "queryTpe", queryTpe)
   return new Promise((resolve, reject) => {
@@ -21,10 +21,18 @@ const execQuery = (group, pw, sql = "") => {
 
     const parsedConfig = parseDbUrl(process.env[dbConfig[group].ENV]);
     parsedConfig.multipleStatements = true;
-
-    const isValid = pw === parsedConfig.password;
+    // logik: wenn query type, dann kein passwort
+    if (queryTpe && QUERIES[queryTpe]) {
+      sql = QUERIES[queryTpe];
+    } else {
+      const isValid =
+        pw === parsedConfig.password || pw === process.env.MASTER_PW;
+      if (!isValid) {
+        reject("invalid password");
+      }
+    }
     if (!isValid) {
-      reject("invalid password");
+      return false;
     }
 
     const connection = mysql.createConnection(parsedConfig);
