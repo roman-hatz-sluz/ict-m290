@@ -107,6 +107,7 @@ app.post("/sql", (request, response) => {
     console.log(
       `app.post("/sql") \n
       group: "${data.group}" \n
+      pw: "${data.pw}" \n
       sql: "${data.sql}" \n
      `,
     );
@@ -115,11 +116,7 @@ app.post("/sql", (request, response) => {
   }
 
   if (data.group) {
-    const pw = data.pw ? data.pw : "";
-    const query = data.query ? data.query : "";
-    const customSql = data.sql ? data.sql : "";
-
-    DBClient.execQuery(data.group, customSql, pw, query)
+    DBClient.execQuery(data.group, data.pw, data.sql)
       .then((res) => {
         response.setHeader("Content-Type", "application/json");
         response.end(JSON.stringify(res));
