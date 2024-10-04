@@ -1,3 +1,5 @@
+// still needed?
+
 const fs = require("fs");
 
 function removePasswords() {

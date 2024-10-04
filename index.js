@@ -8,7 +8,7 @@ const DBClient = require("./srv/db-client");
 const app = express();
 app.use(
   session({
-    secret: "xw   ef (sfefdsdf",
+    secret: "xw   ef (sfefd5_sdf",
     saveUninitialized: true,
     resave: false,
   }),

@@ -13,8 +13,16 @@
 - npm run start
 - npm run dev
 
+# Setup for start of project
+
+- npm run backup-all-databases: creates backup of all databases
+- npm run reset-all-databases: deletes ALL data in all databases
+- npm run generate-public-json: creats config file for groups.json. Move this file to srv/groups.json and upload this file to the server
+- npm run generate-private-json: move this file to secret folder (also .env file)
+
 # DB Commands
 
+- First run `heroku login`
 - npm run list-dbs
 - npm run create-30-dbs (takes a while)
 - npm run delete-all-db (deletes all databases without further confirmation)
@@ -23,4 +31,4 @@
 
 ## Further Information
 
-VueJs application is in the works.
+- heroku config --app ict-290 --json

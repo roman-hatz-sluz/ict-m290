@@ -1,157 +1,142 @@
 ﻿{
-  "teacher": {
-    "name": "Teacher",
+  "teacher1": {
+    "name": "",
     "class": "Teacher",
-    "ENV": "JAWSDB_LOCAL_ENV"
-  },
-  "al1": {
-    "name": "KOLÖRS",
-    "class": "MMA21-aL",
     "ENV": "JAWSDB_AMBER_URL"
   },
-  "al2": {
-    "name": "Drinks of the Galaxy",
-    "class": "MMA21-aL",
+  "teacher2": {
+    "name": "",
+    "class": "Teacher",
+    "ENV": "JAWSDB_AQUA_URL"
+  },
+  "teacher3": {
+    "name": "",
+    "class": "Teacher",
     "ENV": "JAWSDB_BLACK_URL"
   },
-  "al3": {
-    "name": "Gitarren",
-    "class": "MMA21-aL",
+  "teacher4": {
+    "name": "",
+    "class": "Teacher",
     "ENV": "JAWSDB_BLUE_URL"
   },
-  "al4": {
-    "name": "Footwear Studio",
-    "class": "MMA21-aL",
+  "teacher5": {
+    "name": "",
+    "class": "Teacher",
     "ENV": "JAWSDB_BRONZE_URL"
   },
-  "al5": {
-    "name": "Stoner Studios",
-    "class": "MMA21-aL",
+  "teacher6": {
+    "name": "",
+    "class": "Teacher",
     "ENV": "JAWSDB_BROWN_URL"
+  },
+  "teacher7": {
+    "name": "",
+    "class": "Teacher",
+    "ENV": "JAWSDB_CHARCOAL_URL"
+  },
+  "al1": {
+    "name": "",
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_COBALT_URL"
+  },
+  "al2": {
+    "name": "",
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_COPPER_URL"
+  },
+  "al3": {
+    "name": "",
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_CRIMSON_URL"
+  },
+  "al4": {
+    "name": "",
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_CYAN_URL"
+  },
+  "al5": {
+    "name": "",
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_GOLD_URL"
   },
   "al6": {
     "name": "",
-    "class": "MMA21-aL",
-    "ENV": "JAWSDB_CHARCOAL_URL"
+    "class": "MMA22aL",
+    "ENV": "JAWSDB_GRAY_URL"
   },
   "al7": {
     "name": "",
-    "class": "MMA21-aL",
-    "ENV": "JAWSDB_COBALT_URL"
-  },
-  "al8": {
-    "name": "",
-    "class": "MMA21-aL",
-    "ENV": "JAWSDB_COPPER_URL"
-  },
-  "al9": {
-    "name": "Demo Teacher",
-    "class": "MMA21-aL",
-    "ENV": "JAWSDB_CRIMSON_URL"
-  },
-  "Klasse MMA21-aL": {
-    "name": "",
-    "class": "MMA21-aL",
-    "ENV": "JAWSDB_CYAN_URL"
-  },
-  "cl1": {
-    "name": "Roadrunner Skis",
-    "class": "MMA21-cL",
-    "ENV": "JAWSDB_GOLD_URL"
-  },
-  "cl2": {
-    "name": "Phone Flow",
-    "class": "MMA21-cL",
-    "ENV": "JAWSDB_GRAY_URL"
-  },
-  "cl3": {
-    "name": "Quattro Quartier",
-    "class": "MMA21-cL",
+    "class": "MMA22aL",
     "ENV": "JAWSDB_GREEN_URL"
   },
-  "cl4": {
-    "name": "Snacks",
-    "class": "MMA21-cL",
+  "cl1": {
+    "name": "",
+    "class": "MMA22cL",
     "ENV": "JAWSDB_IVORY_URL"
   },
-  "cl5": {
-    "name": "Dienstag",
-    "class": "MMA21-cL",
+  "cl2": {
+    "name": "",
+    "class": "MMA22cL",
     "ENV": "JAWSDB_JADE_URL"
+  },
+  "cl3": {
+    "name": "",
+    "class": "MMA22cL",
+    "ENV": "JAWSDB_LOCAL_ENV"
+  },
+  "cl4": {
+    "name": "",
+    "class": "MMA22cL",
+    "ENV": "JAWSDB_MAROON_URL"
+  },
+  "cl5": {
+    "name": "",
+    "class": "MMA22cL",
+    "ENV": "JAWSDB_MAUVE_URL"
   },
   "cl6": {
     "name": "",
-    "class": "MMA21-cL",
-    "ENV": "JAWSDB_MAROON_URL"
+    "class": "MMA22cL",
+    "ENV": "JAWSDB_NAVY_URL"
   },
   "cl7": {
     "name": "",
-    "class": "MMA21-cL",
-    "ENV": "JAWSDB_MAUVE_URL"
-  },
-  "cl8": {
-    "name": "",
-    "class": "MMA21-cL",
-    "ENV": "JAWSDB_NAVY_URL"
-  },
-  "cl9": {
-    "name": "",
-    "class": "MMA21-cL",
+    "class": "MMA22cL",
     "ENV": "JAWSDB_OLIVE_URL"
   },
-  "Klasse MMA21-cL": {
+  "b1": {
     "name": "",
-    "class": "MMA21-cL",
+    "class": "MMA22b",
     "ENV": "JAWSDB_ONYX_URL"
   },
-  "b1": {
-    "name": "Candy-Shop",
-    "class": "MMA21-b",
+  "b2": {
+    "name": "",
+    "class": "MMA22b",
     "ENV": "JAWSDB_ORANGE_URL"
   },
-  "b2": {
-    "name": "Brillen-Store (Klara)",
-    "class": "MMA21-b",
+  "b3": {
+    "name": "",
+    "class": "MMA22b",
     "ENV": "JAWSDB_PINK_URL"
   },
-  "b3": {
-    "name": "Haircare (nicht mehr verwenden: Permission error)",
-    "class": "MMA21-b",
+  "b4": {
+    "name": "",
+    "class": "MMA22b",
     "ENV": "JAWSDB_PUCE_URL"
   },
-  "b4": {
-    "name": "Library (Book it!)",
-    "class": "MMA21-b",
+  "b5": {
+    "name": "",
+    "class": "MMA22b",
     "ENV": "JAWSDB_PURPLE_URL"
   },
-  "b5": {
-    "name": "Drum Machines",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_RED_URL"
-  },
   "b6": {
-    "name": "Pflanzen-Shop (Planeya)",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_SILVER_URL"
+    "name": "",
+    "class": "MMA22b",
+    "ENV": "JAWSDB_ROSE_URL"
   },
   "b7": {
-    "name": "Unihockeystöcke",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_TEAL_URL"
-  },
-  "b8": {
-    "name": "Haircare (B3)",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_URL"
-  },
-  "b9": {
     "name": "",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_WHITE_URL"
-  },
-  "Klasse MMA21b": {
-    "name": "Übungs-Datenbank für die ganze Klasse",
-    "class": "MMA21-b",
-    "ENV": "JAWSDB_YELLOW_URL"
+    "class": "MMA22b",
+    "ENV": "JAWSDB_SILVER_URL"
   }
 }
