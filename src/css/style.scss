@@ -67,18 +67,26 @@ body {
   align-self: center;
   justify-self: start;
 }
-
+.header-nav_title {
+  text-shadow:
+    -0.5px -0.5px 0 #000,
+    0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000,
+    0.5px 0.5px 0 #000,
+    -1px -1px 1px #fff,
+    1px -1px 1px #fff,
+    -1px 1px 1px #fff,
+    1px 1px 1px #fff;
+}
 .header-nav {
   align-self: center;
   justify-self: end;
   color: #f0f0f0;
-  font-size: 14px;
-  margin-right: 16px;
-  text-align: right;
-  //box-shadow: #0078e7 0px 0px 0px 2px;
+  font-size: 16px;
+
+  text-align: left;
+
   padding: 4px;
-  border-radius: 1vw;
-  background-color: white;
 }
 .header-nav__hidden {
   display: none;
