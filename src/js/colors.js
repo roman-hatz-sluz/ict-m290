@@ -37,8 +37,8 @@ export default function applyColors() {
     const groupColoredElements =
       document.getElementsByClassName("group-colored");
 
-    // Apply the colorInfo to each "group-colored" element
     for (let i = 0; i < groupColoredElements.length; i++) {
+      console.log(groupColoredElements[i]);
       groupColoredElements[i].style.color = colorInfo.text;
     }
   }
