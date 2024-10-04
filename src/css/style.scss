@@ -28,9 +28,10 @@ body {
 }
 .content {
   flex: 1;
-  padding: 8px;
-  margin: 20px;
+  padding: 8px 24px 24px 24px;
+  margin: 16px;
   background-color: #f2f2f2;
+  border-radius: 1vw;
 }
 
 .header {
@@ -68,6 +69,7 @@ body {
   justify-self: start;
 }
 .header-nav_title {
+  letter-spacing: 0.06em;
   text-shadow:
     -0.5px -0.5px 0 #000,
     0.5px -0.5px 0 #000,
@@ -99,6 +101,7 @@ body {
   color: #0078e7;
 }
 .nav-button-active {
+  font-weight: bold;
   background-image: linear-gradient(
     transparent,
     rgba(0, 0, 0, 0.05) 40%,
@@ -107,7 +110,8 @@ body {
   pointer-events: none;
 }
 .home-section {
-  margin-bottom: 8px;
+  padding-bottom: 8px;
+  max-width: 90ch;
 }
 
 .footer {
@@ -144,6 +148,7 @@ pre {
 
 .content-nav-item {
   display: inline;
+  padding-right: 8px;
 }
 .shop-nav {
   font-size: 14px;
