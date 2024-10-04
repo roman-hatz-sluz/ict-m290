@@ -75,6 +75,10 @@ body {
   font-size: 14px;
   margin-right: 16px;
   text-align: right;
+  box-shadow: #0078e7 0px 0px 0px 2px;
+  padding: 4px;
+  border-radius: 1vw;
+  background-color: white;
 }
 .header-nav__hidden {
   display: none;
@@ -279,4 +283,7 @@ svg text {
 /* overrides */
 .pure-button {
   border-radius: 12px;
+}
+
+.group-colored {
 }

@@ -9,12 +9,13 @@ import {
 } from "./shop";
 import initLogin from "./login.js";
 import initHomePage from "./home.js";
-
+import applyColors from "./colors.js";
 import { getSearchParameters } from "./helpers.js";
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
+    applyColors();
     const nav1 = document.getElementById("nav_1");
     const nav2 = document.getElementById("nav_2");
 
@@ -42,5 +43,5 @@ document.addEventListener(
       console.error("invalid page");
     }
   },
-  false
+  false,
 );
