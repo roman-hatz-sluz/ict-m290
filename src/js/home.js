@@ -4,11 +4,13 @@ let groupValue = null;
 let resultPane;
 
 export default function init() {
-  groupValue = document.body.getAttribute("data-group");
+  groupValue = document
+    .getElementsByClassName("db_config")[0]
+    .getAttribute("data-group");
   localStorage.setItem("group", groupValue);
   resultPane = document.getElementById("result");
 
-  getData(document.body.getAttribute("data-group"));
+  getData(groupValue);
 }
 
 async function getData() {

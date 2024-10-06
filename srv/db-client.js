@@ -66,7 +66,7 @@ const execQuery = (group, sql = "", pw = "", queryTpe = "") => {
 const getGroupData = (pw = "") => {
   let result = null;
   const groups = Object.keys(dbConfig);
-  // console.log("pw", pw, groups)
+  console.log("pw", pw, groups);
   groups.forEach((g) => {
     //  console.log("dbConfig[g].ENV",dbConfig[g].ENV, process.env[dbConfig[g].ENV])
     const sqlQueryString = process.env[dbConfig[g].ENV] || "";
